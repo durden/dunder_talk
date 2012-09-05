@@ -1,0 +1,155 @@
+http://en.wikipedia.org/wiki/Dunder
+http://wiki.python.org/moin/DunderAlias
+
+title: Dunder what? Python's object model explained.
+
+Python's more advanced features like descriptors, context managers, and
+meta-programming can be more easily understood by investigating the object
+model and dunder methods.
+
+This talk will explore what dunder methods are, why their useful, and how they
+contribute to the overall design of a fully Pythonic object.
+
+
+
+Properties:
+
+class User(object):
+    def __init__(self, name, email):
+        self._name = name
+        self._email = None
+        self.email = email
+    def set_email(self, email):
+        if '@' not in email:
+            raise TypeError
+        self._email = email
+    def get_email(self):
+        return self._email
+    email = property(get_email, set_email)
+
+- Pure Python equivalent, just for demonstration:
+- http://docs.python.org/howto/descriptor.html
+
+class Property(object):
+    "Emulate PyProperty_Type() in Objects/descrobject.c"
+
+    def __init__(self, fget=None, fset=None, fdel=None, doc=None):
+        self.fget = fget
+        self.fset = fset
+        self.fdel = fdel
+        self.__doc__ = doc
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        if self.fget is None:
+            raise AttributeError, "unreadable attribute"
+        return self.fget(obj)
+
+    def __set__(self, obj, value):
+        if self.fset is None:
+            raise AttributeError, "can't set attribute"
+        self.fset(obj, value)
+
+    def __delete__(self, obj):
+        if self.fdel is None:
+            raise AttributeError, "can't delete attribute"
+        self.fdel(obj)
+
+
+- Good/verbose use-case for property
+- Update one value automatically that depends on another
+- http://www.itmaybeahack.com/book/python-2.6/html/p03/p03c05_properties.html
+
+class Celsius( object ):
+    """Fundamental Temperature Descriptor."""
+    def __init__( self, value=0.0 ):
+        self.value= float(value)
+    def __get__( self, instance, owner ):
+        return self.value
+    def __set__( self, instance, value ):
+        self.value= float(value)
+
+class Farenheit( object ):
+    """Requires that the owner have a ``celsius`` attribute."""
+    def __get__( self, instance, owner ):
+        return instance.celsius * 9 / 5 + 32
+    def __set__( self, instance, value ):
+        instance.celsius= (float(value)-32) * 5 / 9
+
+class Temperature( object ):
+    celsius= Celsius()
+    farenheit= Farenheit()
+
+
+OrderedDict:
+
+- http://code.activestate.com/recipes/576693/
+- Interesting side note about __getitem__(self, key)
+- http://farmdev.com/src/secrets/magicmethod/index.html
+
+class Test(object):
+    def __getitem__(self, items):
+        print '%-15s  %s' % (type(items), items)
+
+t = Test()
+t[1]
+t['hello world']
+t[1, 'b', 3.0]
+t[5:200:10]
+t['a':'z':3]
+t[object()]
+
+Pandas:
+
+- http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
+- http://pandas.pydata.org
+>>> import pandas
+>>> s = pandas.Series({'a' : 0., 'b' : 1., 'c' : 2.})
+>>> s
+a    0
+b    1
+c    2
+>>> s[0]
+0.0
+>>> s[[2,1]]
+c    2
+b    1
+>>> s[[2,1]][0]
+2.0
+
+
+- HOW?!?!
+- pandas/core/frame.py
+    def __getitem__(self, key):
+        # slice rows
+        if isinstance(key, slice):
+            from pandas.core.indexing import _is_index_slice
+            idx_type = self.index.inferred_type
+            if idx_type == 'floating':
+                indexer = self.ix._convert_to_indexer(key, axis=0)
+            elif idx_type == 'integer' or _is_index_slice(key):
+                indexer = key
+            else:
+                indexer = self.ix._convert_to_indexer(key, axis=0)
+            new_data = self._data.get_slice(indexer, axis=1)
+            return self._constructor(new_data)
+        # either boolean or fancy integer index
+        elif isinstance(key, (np.ndarray, list)):
+            if isinstance(key, list):
+                key = lib.list_to_object_array(key)
+
+            # also raises Exception if object array with NA values
+            if com._is_bool_indexer(key):
+                key = np.asarray(key, dtype=bool)
+            return self._getitem_array(key)
+        elif isinstance(self.columns, MultiIndex):
+            return self._getitem_multilevel(key)
+        elif isinstance(key, DataFrame):
+            values = key.values
+            if values.dtype == bool:
+                return self.values[values]
+            else:
+                raise ValueError('Cannot index using non-boolean DataFrame')
+        else:
+            return self._get_item_cache(key)
