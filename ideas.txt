@@ -157,7 +157,6 @@ c    2
         def wrapper(self, other):
             from pandas.core.frame import DataFrame
 
-            import pdb;pdb.set_trace()
             if isinstance(other, Series):
                 name = _maybe_match_name(self, other)
                 return Series(na_op(self.values, other.values),

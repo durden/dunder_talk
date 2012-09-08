@@ -22,6 +22,11 @@
 
 - Data analysis package built on numpy
 - Supports tons of fancy indexing
+- See pandas/core/series.py
+
+# Presenter Notes
+
+- Show pandas_snippet.py if time
 
 --------------------------------------------------
 
@@ -51,5 +56,4 @@
     <type 'object'>  <object object at 0x10aaf40d0>
     >>>
 
-- See pandas/core/series.py
 - 'key' argument is fancy
