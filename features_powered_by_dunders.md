@@ -1,10 +1,10 @@
 # Powered by Dunders
 
-- Properties
+- Operator overloading
 - Context Managers
 - Collections module
+- Properties
 - Descriptors
 - Callables
 - Pickling
 - Metaclasses
-- Operator overloading
