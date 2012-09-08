@@ -72,7 +72,7 @@
             </aside>
             
             <aside class="page_number">
-              1/19
+              1/23
             </aside>
           </footer>
         </div>
@@ -107,7 +107,7 @@
             </aside>
             
             <aside class="page_number">
-              2/19
+              2/23
             </aside>
           </footer>
         </div>
@@ -147,7 +147,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              3/19
+              3/23
             </aside>
           </footer>
         </div>
@@ -164,6 +164,8 @@ that get called at specific, well-defined times.</p>
             <section><ul>
 <li>Very common/widely used</li>
 <li>Pythonic</li>
+<li>Operator overloading</li>
+<li>Debugging tools</li>
 <li>Avoid custom API/object symantics</li>
 <li>Domain Specific Language (DSL)</li>
 <li>Your already using them</li>
@@ -183,7 +185,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              4/19
+              4/23
             </aside>
           </footer>
         </div>
@@ -245,7 +247,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              5/19
+              5/23
             </aside>
           </footer>
         </div>
@@ -260,14 +262,14 @@ that get called at specific, well-defined times.</p>
             
             
             <section><ul>
-<li>Properties</li>
+<li>Operator overloading</li>
 <li>Context Managers</li>
 <li>Collections module</li>
+<li>Properties</li>
 <li>Descriptors</li>
 <li>Callables</li>
 <li>Pickling</li>
 <li>Metaclasses</li>
-<li>Operator overloading</li>
 </ul></section>
             
           </div>
@@ -284,7 +286,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              6/19
+              6/23
             </aside>
           </footer>
         </div>
@@ -319,7 +321,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              7/19
+              7/23
             </aside>
           </footer>
         </div>
@@ -374,7 +376,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              8/19
+              8/23
             </aside>
           </footer>
         </div>
@@ -416,7 +418,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              9/19
+              9/23
             </aside>
           </footer>
         </div>
@@ -475,7 +477,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              10/19
+              10/23
             </aside>
           </footer>
         </div>
@@ -533,7 +535,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              11/19
+              11/23
             </aside>
           </footer>
         </div>
@@ -579,7 +581,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              12/19
+              12/23
             </aside>
           </footer>
         </div>
@@ -630,7 +632,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              13/19
+              13/23
             </aside>
           </footer>
         </div>
@@ -668,7 +670,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              14/19
+              14/23
             </aside>
           </footer>
         </div>
@@ -725,7 +727,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              15/19
+              15/23
             </aside>
           </footer>
         </div>
@@ -733,14 +735,60 @@ that get called at specific, well-defined times.</p>
       
       <!-- slide source: open_source_dunders.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code">
+        <div class="slide">
           <div class="inner">
             
             <header><h1>Dunders in the wild</h1></header>
             
             
-            <section><h2>Pandas</h2>
-<div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
+            <section><ul>
+<li>ORM</li>
+<li>Parser<ul>
+<li>HTML</li>
+<li>markdown</li>
+<li>XML</li>
+</ul>
+</li>
+<li>Debugging tools<ul>
+<li>IPython</li>
+</ul>
+</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li><strong>dir</strong>, <strong>repr</strong> for IPython</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="open_source_dunders.md">open_source_dunders.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pandas.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pandas</h2></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;a&#39;</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s">&#39;b&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;c&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">})</span>
 <span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>
 <span class="lineno"> 4</span> <span class="n">a</span>    <span class="mi">0</span>
@@ -779,17 +827,17 @@ that get called at specific, well-defined times.</p>
           <footer>
             
             <aside class="source">
-              Source: <a href="open_source_dunders.md">open_source_dunders.md</a>
+              Source: <a href="pandas.md">pandas.md</a>
             </aside>
             
             <aside class="page_number">
-              16/19
+              17/23
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source: open_source_dunders.md -->
+      <!-- slide source: pandas.md -->
       <div class="slide-wrapper">
         <div class="slide has_code">
           <div class="inner">
@@ -834,11 +882,170 @@ that get called at specific, well-defined times.</p>
           <footer>
             
             <aside class="source">
-              Source: <a href="open_source_dunders.md">open_source_dunders.md</a>
+              Source: <a href="pandas.md">pandas.md</a>
             </aside>
             
             <aside class="page_number">
-              17/19
+              18/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: peewee.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Peewee ORM</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="n">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 3</span> <span class="n">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 4</span> <span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 5</span> <span class="n">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 6</span> <span class="n">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span> <span class="n">SomeModel</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+<span class="lineno"> 9</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span>
+<span class="lineno">10</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s">&#39;D&#39;</span><span class="p">))</span>
+<span class="lineno">11</span> <span class="p">)</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c"># generates something like:</span>
+<span class="lineno">14</span> <span class="c"># SELECT * FROM some_obj</span>
+<span class="lineno">15</span> <span class="c"># WHERE ((a = &quot;A&quot; OR b = &quot;B&quot;) AND (c = &quot;C&quot; OR d = &quot;D&quot;))</span>
+</pre></div>
+
+<ul>
+<li>Heavy use of all math/logic overrides</li>
+<li><a href="https://github.com/coleifer/peewee">peewee</a></li>
+<li>Relatively small, &lt; 3000 lines</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>map logical '|', '&amp;', '~' to 'OR', 'AND', 'NOT' SQL</li>
+<li><strong>neg</strong> is unary negation operator</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="peewee.md">peewee.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: my_dunder_attempts.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>My Dunder ideas/attempts</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">frappy.services.github</span> <span class="kn">import</span> <span class="n">Github</span>
+<span class="lineno">2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">Github</span><span class="p">()</span>
+<span class="lineno">3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">users</span><span class="p">(</span><span class="s">&#39;octocat&#39;</span><span class="p">)</span>
+<span class="lineno">4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">result</span><span class="o">.</span><span class="n">response_json</span>
+<span class="lineno">5</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># http://developer.github.com/v3/users/</span>
+<span class="lineno">6</span> 
+<span class="lineno">7</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">8</span> <span class="n">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Web API wrapper <a href="http://github.com/durden/frappy">frappy</a></li>
+<li>Documenting wrapper code sucks</li>
+<li>Updating wrapper code sucks</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>Main idea was to have a python wrapper for any REST API that didn't need it's
+  own documentation or constant updates.</li>
+<li>Metaprogramming</li>
+<li>Create object with base domain name to query</li>
+<li>Add missing attributes onto url, add args at the end as query string</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="my_dunder_attempts.md">my_dunder_attempts.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: my_dunder_attempts.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Better than a Frappy</h1></header>
+            
+            
+            <section><h2>Hammock</h2>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">hammock</span> <span class="kn">import</span> <span class="n">Hammock</span> <span class="k">as</span> <span class="n">Github</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Let&#39;s create the first chain of hammock using base api url</span>
+<span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">github</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s">&#39;https://api.github.com&#39;</span><span class="p">)</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Ok, let the magic happens, ask github for hammock watchers</span>
+<span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">repos</span><span class="p">(</span><span class="s">&#39;kadirpekel&#39;</span><span class="p">,</span> <span class="s">&#39;hammock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">watchers</span><span class="o">.</span><span class="n">GET</span><span class="p">()</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">10</span> <span class="n">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="lineno">11</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">12</span> <span class="n">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Chains 'hammock' objects</li>
+<li>Allows arguments anywhere</li>
+<li><a href="https://github.com/kadirpekel/hammock">hammock</a></li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="my_dunder_attempts.md">my_dunder_attempts.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/23
             </aside>
           </footer>
         </div>
@@ -852,10 +1059,27 @@ that get called at specific, well-defined times.</p>
             <header><h1>Python Philosophy</h1></header>
             
             
+            <section><ul>
+<li>When in doubt, rationalize from 'The Zen'</li>
+<li>In the face of ambiguity, refuse the temptation to guess.</li>
+<li>There should be one-- and preferably only one --obvious way to do it.</li>
+<li>Explicit is better than implicit.</li>
+<li>Readability counts.</li>
+<li>If the implementation is hard to explain, it's a bad idea.</li>
+</ul>
+</section>
+            
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <ul>
+<li>no ambiguity, getlen(), getLength(), len(), etc.</li>
+<li>Much cleaner IMO than c++/Java syntax of operator overloading</li>
+<li>Docs aren't great, but clearly defined what happens</li>
+<li>Use caution</li>
+</ul>
             
             </section>
           </div>
@@ -866,7 +1090,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              18/19
+              22/23
             </aside>
           </footer>
         </div>
@@ -881,8 +1105,18 @@ that get called at specific, well-defined times.</p>
             
             
             <section><h2>Code</h2>
-<pre><code>- [Pinboard links](http://pinboard.in/u:durden/t:dunder_talk/)
-</code></pre></section>
+<ul>
+<li><a href="http://pinboard.in/u:durden/t:dunder_talk/">Pinboard links</a></li>
+<li><a href="http://durden.github.com/dunder_talk/">Presentation</a></li>
+<li><a href="https://github.com/adamzap/landslide">Landslide</a></li>
+</ul>
+<h2>Me</h2>
+<ul>
+<li><a href="http://twitter.com/durden20">@durden20</a></li>
+<li><a href="http://github.com/durden">http://github.com/durden</a></li>
+<li><a href="http://lukelee.me">http://lukelee.me</a></li>
+<li><a href="http://lukelee.net">http://lukelee.net</a></li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -898,7 +1132,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              19/19
+              23/23
             </aside>
           </footer>
         </div>
@@ -1008,22 +1242,47 @@ that get called at specific, well-defined times.</p>
         <td><a href="#slide16">16</a></td>
       </tr>
       
-      
-      <tr id="toc-row-17">
-        <th><a href="#slide17">Pandas secrets</a></th>
-        <td><a href="#slide17">17</a></td>
-      </tr>
+        
+        <tr id="toc-row-17" class="sub">
+          <th><a href="#slide17">Pandas</a></th>
+          <td><a href="#slide17">17</a></td>
+        </tr>
+        
       
       
       <tr id="toc-row-18">
-        <th><a href="#slide18">Python Philosophy</a></th>
+        <th><a href="#slide18">Pandas secrets</a></th>
         <td><a href="#slide18">18</a></td>
       </tr>
       
       
       <tr id="toc-row-19">
-        <th><a href="#slide19">References</a></th>
+        <th><a href="#slide19">Peewee ORM</a></th>
         <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">My Dunder ideas/attempts</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Better than a Frappy</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Python Philosophy</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">References</a></th>
+        <td><a href="#slide23">23</a></td>
       </tr>
       
       
