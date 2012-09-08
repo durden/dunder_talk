@@ -17,6 +17,8 @@ that get called at specific, well-defined times.
 
 - Very common/widely used
 - Pythonic
+- Operator overloading
+- Debugging tools
 - Avoid custom API/object symantics
 - Domain Specific Language (DSL)
 - Your already using them
@@ -48,4 +50,3 @@ that get called at specific, well-defined times.
 - Similar in theory to __str__, called by unicode(), etc.
 
 - [Old-style dunder lookup](http://stackoverflow.com/questions/12223836/lookup-of-magic-methods-on-old-style-python-classes)
-
