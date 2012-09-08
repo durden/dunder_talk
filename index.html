@@ -292,6 +292,152 @@ that get called at specific, well-defined times.</p>
         </div>
       </div>
       
+      <!-- slide source: context_managers.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Context Managers</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Useful for 'bookended' actions</li>
+<li>Simple exception handling</li>
+<li>Built-in for File objects, etc. in 2.7</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="context_managers.md">context_managers.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: context_managers.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Context Manager example</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Progress bar that normalizes progress to [0 - 100] scale&quot;&quot;&quot;</span>
+<span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
+<span class="lineno"> 4</span>         <span class="sd">&quot;&quot;&quot;Create progress bar with max_val&quot;&quot;&quot;</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_val</span><span class="p">)</span>
+<span class="lineno"> 8</span>     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno"> 9</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno">11</span>         <span class="c"># Important!</span>
+<span class="lineno">12</span>         <span class="k">return</span> <span class="bp">self</span>
+<span class="lineno">13</span>     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+<span class="lineno">14</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>         <span class="c"># Not handling any exceptions, so they&#39;ll be raised automatically</span>
+<span class="lineno">18</span>         <span class="c"># To ignore exceptions return True or inspect arguments to handle</span>
+<span class="lineno">19</span>         <span class="k">return</span> <span class="bp">False</span>
+<span class="lineno">20</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">21</span>         <span class="sd">&quot;&quot;&quot;Update progress value&quot;&quot;&quot;</span>
+<span class="lineno">22</span>         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">:</span>
+<span class="lineno">23</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
+<span class="lineno">24</span>         <span class="k">else</span><span class="p">:</span>
+<span class="lineno">25</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
+<span class="lineno">26</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\r</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span><span class="p">),</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="context_managers.md">context_managers.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: ordered_dict.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>OrderedDict</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">4</span> <span class="n">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno">5</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">6</span> <span class="n">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">7</span> <span class="n">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">8</span> <span class="n">__concat__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Sequence protocol, implement what you need</li>
+<li><a href="http://code.activestate.com/recipes/576693/">Pure Python OrderedDict</a></li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>Immutuable only needs getitem, len</li>
+<li>Mutuable needs setitem</li>
+<li>Implementing <strong>contains</strong> usually not needed, default behavior is to loop
+  over your items and return if it was found.</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="ordered_dict.md">ordered_dict.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
       <!-- slide source: properties.md -->
       <div class="slide-wrapper">
         <div class="slide">
@@ -321,7 +467,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              7/23
+              10/23
             </aside>
           </footer>
         </div>
@@ -376,7 +522,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              8/23
+              11/23
             </aside>
           </footer>
         </div>
@@ -418,7 +564,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              9/23
+              12/23
             </aside>
           </footer>
         </div>
@@ -477,7 +623,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              10/23
+              13/23
             </aside>
           </footer>
         </div>
@@ -535,7 +681,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              11/23
+              14/23
             </aside>
           </footer>
         </div>
@@ -578,152 +724,6 @@ that get called at specific, well-defined times.</p>
             
             <aside class="source">
               Source: <a href="properties.md">properties.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              12/23
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: ordered_dict.md -->
-      <div class="slide-wrapper">
-        <div class="slide has_code">
-          <div class="inner">
-            
-            <header><h1>OrderedDict</h1></header>
-            
-            
-            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="lineno">2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-<span class="lineno">3</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">4</span> <span class="n">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-<span class="lineno">5</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">6</span> <span class="n">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">7</span> <span class="n">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">8</span> <span class="n">__concat__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</pre></div>
-
-<ul>
-<li>Sequence protocol, implement what you need</li>
-<li><a href="http://code.activestate.com/recipes/576693/">Pure Python OrderedDict</a></li>
-</ul>
-</section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-              <ul>
-<li>Immutuable only needs getitem, len</li>
-<li>Mutuable needs setitem</li>
-<li>Implementing <strong>contains</strong> usually not needed, default behavior is to loop
-  over your items and return if it was found.</li>
-</ul>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="ordered_dict.md">ordered_dict.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              13/23
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: context_managers.md -->
-      <div class="slide-wrapper">
-        <div class="slide has_code">
-          <div class="inner">
-            
-            <header><h1>Context Managers</h1></header>
-            
-            
-            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">2</span> <span class="n">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span>
-</pre></div>
-
-<ul>
-<li>Useful for 'bookended' actions</li>
-<li>Simple exception handling</li>
-<li>Built-in for File objects, etc. in 2.7</li>
-</ul></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="context_managers.md">context_managers.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              14/23
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: context_managers.md -->
-      <div class="slide-wrapper">
-        <div class="slide has_code">
-          <div class="inner">
-            
-            <header><h1>Context Manager example</h1></header>
-            
-            
-            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Progress bar that normalizes progress to [0 - 100] scale&quot;&quot;&quot;</span>
-<span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
-<span class="lineno"> 4</span>         <span class="sd">&quot;&quot;&quot;Create progress bar with max_val&quot;&quot;&quot;</span>
-<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span> <span class="o">=</span> <span class="mf">100.0</span>
-<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_val</span><span class="p">)</span>
-<span class="lineno"> 8</span>     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="lineno"> 9</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
-<span class="lineno">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="lineno">11</span>         <span class="c"># Important!</span>
-<span class="lineno">12</span>         <span class="k">return</span> <span class="bp">self</span>
-<span class="lineno">13</span>     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
-<span class="lineno">14</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
-<span class="lineno">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span>
-<span class="lineno">16</span> 
-<span class="lineno">17</span>         <span class="c"># Not handling any exceptions, so they&#39;ll be raised automatically</span>
-<span class="lineno">18</span>         <span class="c"># To ignore exceptions return True or inspect arguments to handle</span>
-<span class="lineno">19</span>         <span class="k">return</span> <span class="bp">False</span>
-<span class="lineno">20</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="lineno">21</span>         <span class="sd">&quot;&quot;&quot;Update progress value&quot;&quot;&quot;</span>
-<span class="lineno">22</span>         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">:</span>
-<span class="lineno">23</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
-<span class="lineno">24</span>         <span class="k">else</span><span class="p">:</span>
-<span class="lineno">25</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
-<span class="lineno">26</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\r</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span><span class="p">),</span>
-</pre></div>
-</section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="context_managers.md">context_managers.md</a>
             </aside>
             
             <aside class="page_number">
@@ -780,6 +780,63 @@ that get called at specific, well-defined times.</p>
         </div>
       </div>
       
+      <!-- slide source: peewee.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Peewee ORM</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="n">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 3</span> <span class="n">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 4</span> <span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 5</span> <span class="n">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="lineno"> 6</span> <span class="n">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span> <span class="n">SomeModel</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+<span class="lineno"> 9</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span>
+<span class="lineno">10</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s">&#39;D&#39;</span><span class="p">))</span>
+<span class="lineno">11</span> <span class="p">)</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c"># generates something like:</span>
+<span class="lineno">14</span> <span class="c"># SELECT * FROM some_obj</span>
+<span class="lineno">15</span> <span class="c"># WHERE ((a = &quot;A&quot; OR b = &quot;B&quot;) AND (c = &quot;C&quot; OR d = &quot;D&quot;))</span>
+</pre></div>
+
+<ul>
+<li>Heavy use of all math/logic overrides</li>
+<li><a href="https://github.com/coleifer/peewee">peewee</a></li>
+<li>Relatively small, &lt; 3000 lines</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>map logical '|', '&amp;', '~' to 'OR', 'AND', 'NOT' SQL</li>
+<li><strong>neg</strong> is unary negation operator</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="peewee.md">peewee.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/23
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
       <!-- slide source: pandas.md -->
       <div class="slide-wrapper">
         <div class="slide has_code">
@@ -831,7 +888,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              17/23
+              18/23
             </aside>
           </footer>
         </div>
@@ -883,63 +940,6 @@ that get called at specific, well-defined times.</p>
             
             <aside class="source">
               Source: <a href="pandas.md">pandas.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              18/23
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: peewee.md -->
-      <div class="slide-wrapper">
-        <div class="slide has_code">
-          <div class="inner">
-            
-            <header><h1>Peewee ORM</h1></header>
-            
-            
-            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-<span class="lineno"> 2</span> <span class="n">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-<span class="lineno"> 3</span> <span class="n">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-<span class="lineno"> 4</span> <span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-<span class="lineno"> 5</span> <span class="n">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-<span class="lineno"> 6</span> <span class="n">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno"> 7</span> 
-<span class="lineno"> 8</span> <span class="n">SomeModel</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-<span class="lineno"> 9</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span>
-<span class="lineno">10</span>     <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s">&#39;D&#39;</span><span class="p">))</span>
-<span class="lineno">11</span> <span class="p">)</span>
-<span class="lineno">12</span> 
-<span class="lineno">13</span> <span class="c"># generates something like:</span>
-<span class="lineno">14</span> <span class="c"># SELECT * FROM some_obj</span>
-<span class="lineno">15</span> <span class="c"># WHERE ((a = &quot;A&quot; OR b = &quot;B&quot;) AND (c = &quot;C&quot; OR d = &quot;D&quot;))</span>
-</pre></div>
-
-<ul>
-<li>Heavy use of all math/logic overrides</li>
-<li><a href="https://github.com/coleifer/peewee">peewee</a></li>
-<li>Relatively small, &lt; 3000 lines</li>
-</ul>
-</section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-              <ul>
-<li>map logical '|', '&amp;', '~' to 'OR', 'AND', 'NOT' SQL</li>
-<li><strong>neg</strong> is unary negation operator</li>
-</ul>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="peewee.md">peewee.md</a>
             </aside>
             
             <aside class="page_number">
@@ -1183,56 +1183,56 @@ that get called at specific, well-defined times.</p>
       
       
       <tr id="toc-row-7">
-        <th><a href="#slide7">Properties</a></th>
+        <th><a href="#slide7">Context Managers</a></th>
         <td><a href="#slide7">7</a></td>
       </tr>
       
       
       <tr id="toc-row-8">
-        <th><a href="#slide8">Properties</a></th>
+        <th><a href="#slide8">Context Manager example</a></th>
         <td><a href="#slide8">8</a></td>
       </tr>
       
       
       <tr id="toc-row-9">
-        <th><a href="#slide9">Descriptor powered</a></th>
+        <th><a href="#slide9">OrderedDict</a></th>
         <td><a href="#slide9">9</a></td>
       </tr>
       
-        
-        <tr id="toc-row-10" class="sub">
-          <th><a href="#slide10">Pure Python equivalent</a></th>
-          <td><a href="#slide10">10</a></td>
-        </tr>
-        
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Properties</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
       
       
       <tr id="toc-row-11">
-        <th><a href="#slide11">Homemade Descriptor</a></th>
+        <th><a href="#slide11">Properties</a></th>
         <td><a href="#slide11">11</a></td>
       </tr>
       
       
       <tr id="toc-row-12">
-        <th><a href="#slide12">Properties extended</a></th>
+        <th><a href="#slide12">Descriptor powered</a></th>
         <td><a href="#slide12">12</a></td>
       </tr>
       
-      
-      <tr id="toc-row-13">
-        <th><a href="#slide13">OrderedDict</a></th>
-        <td><a href="#slide13">13</a></td>
-      </tr>
+        
+        <tr id="toc-row-13" class="sub">
+          <th><a href="#slide13">Pure Python equivalent</a></th>
+          <td><a href="#slide13">13</a></td>
+        </tr>
+        
       
       
       <tr id="toc-row-14">
-        <th><a href="#slide14">Context Managers</a></th>
+        <th><a href="#slide14">Homemade Descriptor</a></th>
         <td><a href="#slide14">14</a></td>
       </tr>
       
       
       <tr id="toc-row-15">
-        <th><a href="#slide15">Context Manager example</a></th>
+        <th><a href="#slide15">Properties extended</a></th>
         <td><a href="#slide15">15</a></td>
       </tr>
       
@@ -1242,22 +1242,22 @@ that get called at specific, well-defined times.</p>
         <td><a href="#slide16">16</a></td>
       </tr>
       
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Peewee ORM</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
         
-        <tr id="toc-row-17" class="sub">
-          <th><a href="#slide17">Pandas</a></th>
-          <td><a href="#slide17">17</a></td>
+        <tr id="toc-row-18" class="sub">
+          <th><a href="#slide18">Pandas</a></th>
+          <td><a href="#slide18">18</a></td>
         </tr>
         
       
       
-      <tr id="toc-row-18">
-        <th><a href="#slide18">Pandas secrets</a></th>
-        <td><a href="#slide18">18</a></td>
-      </tr>
-      
-      
       <tr id="toc-row-19">
-        <th><a href="#slide19">Peewee ORM</a></th>
+        <th><a href="#slide19">Pandas secrets</a></th>
         <td><a href="#slide19">19</a></td>
       </tr>
       
