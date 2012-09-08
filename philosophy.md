@@ -5,7 +5,6 @@
 - There should be one-- and preferably only one --obvious way to do it.
 - Explicit is better than implicit.
 - Readability counts.
-
 - If the implementation is hard to explain, it's a bad idea.
 
 # Presenter Notes
