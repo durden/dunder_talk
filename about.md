@@ -1,5 +1,3 @@
-!SLIDE bullets
-
 #Luke Lee
 
 - Software Engineer at [Blueback Reservoir](http://www.blueback-reservoir.com/)

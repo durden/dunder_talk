@@ -25,7 +25,11 @@ class User(object):
         self._email = email
     def get_email(self):
         return self._email
-    email = property(get_email, set_email)
+    def del_email(self):
+        print '__delete'
+    def __del__(self):
+        print '__del__'
+    email = property(get_email, set_email, del_email)
 
 - Pure Python equivalent, just for demonstration:
 - http://docs.python.org/howto/descriptor.html
@@ -61,23 +65,23 @@ class Property(object):
 - Update one value automatically that depends on another
 - http://www.itmaybeahack.com/book/python-2.6/html/p03/p03c05_properties.html
 
-class Celsius( object ):
+class Celsius(object):
     """Fundamental Temperature Descriptor."""
-    def __init__( self, value=0.0 ):
+    def __init__(self, value=0.0):
         self.value= float(value)
-    def __get__( self, instance, owner ):
+    def __get__(self, instance, owner):
         return self.value
-    def __set__( self, instance, value ):
+    def __set__(self, instance, value):
         self.value= float(value)
 
 class Farenheit( object ):
     """Requires that the owner have a ``celsius`` attribute."""
-    def __get__( self, instance, owner ):
+    def __get__(self, instance, owner):
         return instance.celsius * 9 / 5 + 32
-    def __set__( self, instance, value ):
+    def __set__(self, instance, value):
         instance.celsius= (float(value)-32) * 5 / 9
 
-class Temperature( object ):
+class Temperature(object):
     celsius= Celsius()
     farenheit= Farenheit()
 
@@ -117,39 +121,97 @@ c    2
 b    1
 >>> s[[2,1]][0]
 2.0
-
+>>> s[s >= 1]
+b    1
+c    2
 
 - HOW?!?!
-- pandas/core/frame.py
-    def __getitem__(self, key):
-        # slice rows
-        if isinstance(key, slice):
-            from pandas.core.indexing import _is_index_slice
-            idx_type = self.index.inferred_type
-            if idx_type == 'floating':
-                indexer = self.ix._convert_to_indexer(key, axis=0)
-            elif idx_type == 'integer' or _is_index_slice(key):
-                indexer = key
-            else:
-                indexer = self.ix._convert_to_indexer(key, axis=0)
-            new_data = self._data.get_slice(indexer, axis=1)
-            return self._constructor(new_data)
-        # either boolean or fancy integer index
-        elif isinstance(key, (np.ndarray, list)):
-            if isinstance(key, list):
-                key = lib.list_to_object_array(key)
+- Two key pieces to this puzzle:
+    1. __ge__(self, other_instance)
+    2. __getitem__(self, key)
 
-            # also raises Exception if object array with NA values
-            if com._is_bool_indexer(key):
-                key = np.asarray(key, dtype=bool)
-            return self._getitem_array(key)
-        elif isinstance(self.columns, MultiIndex):
-            return self._getitem_multilevel(key)
-        elif isinstance(key, DataFrame):
-            values = key.values
-            if values.dtype == bool:
-                return self.values[values]
+- from pandas/core/series.py:100:
+- Ignore fancy wrapping function, etc. boils down to this:
+- Comparision between object s and integer, turns into lib.scalar_compare()
+
+1. __ge__(self, other_instance)
+    def _comp_method(op, name):
+        """
+        Wrapper function for Series arithmetic operations, to avoid
+        code duplication.
+        """
+        def na_op(x, y):
+            if x.dtype == np.object_:
+                if isinstance(y, list):
+                    y = lib.list_to_object_array(y)
+
+                if isinstance(y, np.ndarray):
+                    result = lib.vec_compare(x, y, op)
+                else:
+                    result = lib.scalar_compare(x, y, op)
             else:
-                raise ValueError('Cannot index using non-boolean DataFrame')
-        else:
-            return self._get_item_cache(key)
+                result = op(x, y)
+
+            return result
+
+        def wrapper(self, other):
+            from pandas.core.frame import DataFrame
+
+            import pdb;pdb.set_trace()
+            if isinstance(other, Series):
+                name = _maybe_match_name(self, other)
+                return Series(na_op(self.values, other.values),
+                            index=self.index, name=name)
+            elif isinstance(other, DataFrame): # pragma: no cover
+                return NotImplemented
+            elif isinstance(other, np.ndarray):
+                return Series(na_op(self.values, np.asarray(other)),
+                            index=self.index, name=self.name)
+            else:
+                values = self.values
+                other = lib.convert_scalar(values, other)
+
+                if issubclass(values.dtype.type, np.datetime64):
+                    values = values.view('i8')
+
+                # scalars
+                res = na_op(values, other)
+                if np.isscalar(res):
+                    raise TypeError('Could not compare %s type with Series'
+                                    % type(other))
+                return Series(na_op(values, other),
+                            index=self.index, name=self.name)
+        return wrapper
+
+- from pandas/core/series.py:430
+2. __getitem__(self, key)
+
+    - key is subtype of np.ndarray (numpy)
+    - key is a 'boolean indexer' type
+    - Create new series with given boolean indexer
+
+    def __getitem__(self, key):
+        try:
+            return self.index.get_value(self, key)
+        except InvalidIndexError:
+            pass
+        except KeyError:
+            if isinstance(key, tuple) and isinstance(self.index, MultiIndex):
+                # kludge
+                pass
+            else:
+                raise
+        except Exception:
+            raise
+
+        if com.is_iterator(key):
+            key = list(key)
+
+        # boolean
+        # special handling of boolean data with NAs stored in object
+        # arrays. Since we can't represent NA with dtype=bool
+        if _is_bool_indexer(key):
+            key = self._check_bool_indexer(key)
+            key = np.asarray(key, dtype=bool)
+
+        return self._get_with(key)

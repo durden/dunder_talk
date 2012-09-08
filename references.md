@@ -1,3 +1,1 @@
-!SLIDE bullets
-
 # References
