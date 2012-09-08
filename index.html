@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Dunder What?</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="theme/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="theme/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="theme/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: title.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Dunder What?</h1></header>
+            
+            
+            <section><h2>Power behind Python's object model</h2></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="title.md">title.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: about.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Luke Lee</h1></header>
+            
+            
+            <section><ul>
+<li>Software Engineer at <a href="http://www.blueback-reservoir.com/">Blueback Reservoir</a></li>
+<li>Data mining apps in Python</li>
+<li>Embedded C Developer</li>
+<li>Django enthusiast</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="about.md">about.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dunder_basics.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Dunder Basics</h1></header>
+            
+            
+            <section><ul>
+<li>Dunder just slang for double underscore</li>
+<li>'Private' class methods</li>
+<li>Sometimes called 'magic methods'</li>
+<li>Just poorly documented</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>Use of 'magic' here is a poor choice since the Python community values
+not using magic.  In fact, dunder methods are just plain old methods
+that get called at specific, well-defined times.</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dunder_basics.md">dunder_basics.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dunder_basics.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Why?</h1></header>
+            
+            
+            <section><ul>
+<li>Very common/widely used</li>
+<li>Pythonic</li>
+<li>Avoid custom API/object symantics</li>
+<li>Domain Specific Language (DSL)</li>
+<li>Your already using them</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dunder_basics.md">dunder_basics.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dunder_basics.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Common dunders</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="n">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">4</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">5</span> <span class="n">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>init/creation are separate steps for a good reason.</li>
+<li>Initialize your class, not create</li>
+<li>Takes all arguments from when you create object and passes them</li>
+<li>
+<p>Kind of like a constructor (not exactly)</p>
+</li>
+<li>
+<p>When str() is called, '%s', print, etc.</p>
+</li>
+<li>Python starts at your object and looks for <strong>str</strong>.</li>
+<li>
+<p>Goes through the MRO</p>
+</li>
+<li>
+<p>Different for old-style classes, some magic involved</p>
+</li>
+<li>
+<p>Similar in theory to <strong>str</strong>, called by unicode(), etc.</p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/12223836/lookup-of-magic-methods-on-old-style-python-classes">Old-style dunder lookup</a></p>
+</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dunder_basics.md">dunder_basics.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: features_powered_by_dunders.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Powered by Dunders</h1></header>
+            
+            
+            <section><ul>
+<li>Properties</li>
+<li>Context Managers</li>
+<li>Collections module</li>
+<li>Descriptors</li>
+<li>Callables</li>
+<li>Pickling</li>
+<li>Metaclasses</li>
+<li>Operator overloading</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="features_powered_by_dunders.md">features_powered_by_dunders.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Properties</h1></header>
+            
+            
+            <section><ul>
+<li>Managed attributes</li>
+<li>'Encapsulation'</li>
+<li>Add behavior to attribute actions</li>
+<li>Simplify API</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Properties</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+<span class="lineno"> 3</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>         <span class="c"># Calls descriptor, verify on change and init</span>
+<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="k">def</span> <span class="nf">set_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+<span class="lineno">10</span>         <span class="k">if</span> <span class="s">&#39;@&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">email</span><span class="p">:</span>
+<span class="lineno">11</span>             <span class="k">raise</span> <span class="ne">TypeError</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="n">email</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>     <span class="k">def</span> <span class="nf">get_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno">16</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_email</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span>     <span class="n">email</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_email</span><span class="p">,</span> <span class="n">set_email</span><span class="p">)</span>
+</pre></div>
+
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>Attribute access looks like variable, can add behavior and method later
+  without changing client/API</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Descriptor powered</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="n">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
+</pre></div>
+
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>owner is class instance</li>
+<li>Fancy wording for class that overrides attribute lookup w/ dunders</li>
+<li><strong>delete</strong> called for descriptor attribute deletion</li>
+<li><strong>del</strong> called in other scenarios right before obj deleted</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pure Python equivalent</h2></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="s">&quot;Emulate PyProperty_Type() in Objects/descrobject.c&quot;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fget</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fset</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fdel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="o">=</span> <span class="n">fget</span>
+<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fset</span> <span class="o">=</span> <span class="n">fset</span>
+<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span> <span class="o">=</span> <span class="n">fdel</span>
+<span class="lineno"> 8</span>         <span class="bp">self</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="n">doc</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">objtype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="lineno">11</span>         <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="lineno">12</span>             <span class="k">return</span> <span class="bp">self</span>
+<span class="lineno">13</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="lineno">14</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;unreadable attribute&quot;</span>
+<span class="lineno">15</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">18</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fset</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="lineno">19</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;can&#39;t set attribute&quot;</span>
+<span class="lineno">20</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span>     <span class="k">def</span> <span class="nf">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="lineno">23</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="lineno">24</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;can&#39;t delete attribute&quot;</span>
+<span class="lineno">25</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li><a href="http://docs.python.org/howto/descriptor.html">reference</a></li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Homemade Descriptor</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Celsius</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Fundamental Temperature Descriptor.&quot;&quot;&quot;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">11</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="k">class</span> <span class="nc">Farenheit</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+<span class="lineno">14</span>     <span class="sd">&quot;&quot;&quot;Requires that the owner have a ``celsius`` attribute.&quot;&quot;&quot;</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+<span class="lineno">17</span>         <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">20</span>         <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">-</span><span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span> <span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno">23</span>     <span class="n">celsius</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">()</span>
+<span class="lineno">24</span>     <span class="n">farenheit</span> <span class="o">=</span> <span class="n">Farenheit</span><span class="p">()</span>
+</pre></div>
+
+<ul>
+<li><a href="http://www.itmaybeahack.com/book/python-2.6/html/p03/p03c05_properties.html">reference</a></li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Properties extended</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="n">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">4</span> <span class="n">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span> <span class="o">-</span> <span class="n">Real</span> <span class="n">encapsulation</span>
+<span class="lineno">7</span> <span class="o">-</span> <span class="n">Not</span> <span class="n">always</span> <span class="n">a</span> <span class="n">good</span> <span class="n">idea</span>
+<span class="lineno">8</span> <span class="o">-</span> <span class="n">Power</span> <span class="n">means</span> <span class="n">responsibility</span>
+</pre></div>
+
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>getattr called only for missing attributes</li>
+<li>Useful for throwing a good error message or metaprogramming</li>
+<li>getattribute is called for all lookup, be careful</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: ordered_dict.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>OrderedDict</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">4</span> <span class="n">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno">5</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">6</span> <span class="n">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">7</span> <span class="n">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">8</span> <span class="n">__concat__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Sequence protocol, implement what you need</li>
+<li><a href="http://code.activestate.com/recipes/576693/">Pure Python OrderedDict</a></li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>Immutuable only needs getitem, len</li>
+<li>Mutuable needs setitem</li>
+<li>Implementing <strong>contains</strong> usually not needed, default behavior is to loop
+  over your items and return if it was found.</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="ordered_dict.md">ordered_dict.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: context_managers.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Context Managers</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">2</span> <span class="n">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Useful for 'bookended' actions</li>
+<li>Simple exception handling</li>
+<li>Built-in for File objects, etc. in 2.7</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="context_managers.md">context_managers.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: context_managers.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Context Manager example</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Progress bar that normalizes progress to [0 - 100] scale&quot;&quot;&quot;</span>
+<span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
+<span class="lineno"> 4</span>         <span class="sd">&quot;&quot;&quot;Create progress bar with max_val&quot;&quot;&quot;</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_val</span><span class="p">)</span>
+<span class="lineno"> 8</span>     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno"> 9</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno">11</span>         <span class="c"># Important!</span>
+<span class="lineno">12</span>         <span class="k">return</span> <span class="bp">self</span>
+<span class="lineno">13</span>     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+<span class="lineno">14</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>         <span class="c"># Not handling any exceptions, so they&#39;ll be raised automatically</span>
+<span class="lineno">18</span>         <span class="c"># To ignore exceptions return True or inspect arguments to handle</span>
+<span class="lineno">19</span>         <span class="k">return</span> <span class="bp">False</span>
+<span class="lineno">20</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">21</span>         <span class="sd">&quot;&quot;&quot;Update progress value&quot;&quot;&quot;</span>
+<span class="lineno">22</span>         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">:</span>
+<span class="lineno">23</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
+<span class="lineno">24</span>         <span class="k">else</span><span class="p">:</span>
+<span class="lineno">25</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
+<span class="lineno">26</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\r</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span><span class="p">),</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="context_managers.md">context_managers.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: open_source_dunders.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Dunders in the wild</h1></header>
+            
+            
+            <section><h2>Pandas</h2>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
+<span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;a&#39;</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s">&#39;b&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;c&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">})</span>
+<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>
+<span class="lineno"> 4</span> <span class="n">a</span>    <span class="mi">0</span>
+<span class="lineno"> 5</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno"> 6</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="lineno"> 8</span> <span class="mf">0.0</span>
+<span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="lineno">10</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno">11</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno">12</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+<span class="lineno">13</span> <span class="mf">2.0</span>
+<span class="lineno">14</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+<span class="lineno">15</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno">16</span> <span class="n">c</span>    <span class="mi">2</span>
+</pre></div>
+
+<ul>
+<li>Data analysis package built on numpy</li>
+<li>Supports tons of fancy indexing</li>
+<li>See pandas/core/series.py</li>
+</ul>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <ul>
+<li>Show pandas_snippet.py if time</li>
+</ul>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="open_source_dunders.md">open_source_dunders.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: open_source_dunders.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Pandas secrets</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_instance</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 5</span> <span class="o">...</span>     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+<span class="lineno"> 6</span> <span class="o">...</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="si">%-15s</span><span class="s">  </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">items</span><span class="p">),</span> <span class="n">items</span><span class="p">)</span>
+<span class="lineno"> 7</span> <span class="o">...</span>
+<span class="lineno"> 8</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+<span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="lineno">10</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;int&#39;</span><span class="o">&gt;</span>     <span class="mi">1</span>
+<span class="lineno">11</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;hello world&#39;</span><span class="p">]</span>
+<span class="lineno">12</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;str&#39;</span><span class="o">&gt;</span>     <span class="n">hello</span> <span class="n">world</span>
+<span class="lineno">13</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
+<span class="lineno">14</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;tuple&#39;</span><span class="o">&gt;</span>   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="lineno">15</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">200</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="lineno">16</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="lineno">17</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="s">&#39;z&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="lineno">18</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="lineno">19</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="nb">object</span><span class="p">()]</span>
+<span class="lineno">20</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;object&#39;</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10aaf40d0</span><span class="o">&gt;</span>
+<span class="lineno">21</span> <span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+<ul>
+<li>'key' argument is fancy</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="open_source_dunders.md">open_source_dunders.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: philosophy.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Python Philosophy</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="philosophy.md">philosophy.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: references.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>References</h1></header>
+            
+            
+            <section><h2>Code</h2>
+<pre><code>- [Pinboard links](http://pinboard.in/u:durden/t:dunder_talk/)
+</code></pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="references.md">references.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Dunder What?</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Luke Lee</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Dunder Basics</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Why?</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Common dunders</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Powered by Dunders</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Properties</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Properties</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Descriptor powered</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-10" class="sub">
+          <th><a href="#slide10">Pure Python equivalent</a></th>
+          <td><a href="#slide10">10</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Homemade Descriptor</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Properties extended</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">OrderedDict</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Context Managers</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Context Manager example</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Dunders in the wild</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Pandas secrets</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Python Philosophy</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">References</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
