@@ -7,4 +7,4 @@ This is a talk for the [PyTexas 2012](http://pytexas.org) conference.
 2. To build/run this presentation locally run the following:
     - pip install requirements.txt
     - landslide pres.cfg
-    - Open dunder_talk.html
+    - Open index.html
