@@ -9,6 +9,7 @@
 ## Me
 
 - [@durden20](http://twitter.com/durden20)
+- [Codrspace blog](http://codrspace.com/durden)
 - [http://github.com/durden](http://github.com/durden)
 - [http://lukelee.me](http://lukelee.me)
 - [http://lukelee.net](http://lukelee.net)
