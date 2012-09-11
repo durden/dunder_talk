@@ -245,7 +245,7 @@ div.slide p {
 
 .slide.past {
   display: block;
-  margin-left: -1400px;
+  margin-left: -1700px;
 }
 
 .slide.current {
@@ -255,7 +255,7 @@ div.slide p {
 
 .slide.future {
   display: block;
-  margin-left: 500px;
+  margin-left: 750px;
 }
 
 .slide.far-future {
