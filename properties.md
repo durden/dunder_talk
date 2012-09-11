@@ -48,7 +48,7 @@
 # Presenter Notes
 
 - owner is class instance
-- Fancy wording for class that overrides attribute lookup w/ dunders
+- Fancy wording for class that overrides attribute look up w/ dunders
 - __delete__ called for descriptor attribute deletion
 - __del__ called in other scenarios right before obj deleted
 
@@ -131,12 +131,12 @@
     __delattr__(self, name)
     __getattribute__(self, name)
 
-    - Real encapsulation
-    - Not always a good idea
-    - Power means responsibility
+- Real encapsulation
+- Not always a good idea
+- Power means responsibility
 
 # Presenter Notes
 
 - getattr called only for missing attributes
-- Useful for throwing a good error message or metaprogramming
-- getattribute is called for all lookup, be careful
+- Useful for throwing a good error message or meta programming
+- getattribute is called for all look up, be careful

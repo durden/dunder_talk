@@ -11,15 +11,15 @@
     __getattr__(self, name)
     __call__(self, *args, **kwargs)
 
+- <strike>Extra documentation</strike>
+- <strike>Update for minor API changes</strike>
 - Web API wrapper [frappy](http://github.com/durden/frappy)
-- Documenting wrapper code sucks
-- Updating wrapper code sucks
 
 # Presenter Notes
 
 - Main idea was to have a python wrapper for any REST API that didn't need it's
   own documentation or constant updates.
-- Metaprogramming
+- Meta programming
 - Create object with base domain name to query
 - Add missing attributes onto url, add args at the end as query string
 
@@ -33,10 +33,10 @@
 
     >>> from hammock import Hammock as Github
 
-    >>> # Let's create the first chain of hammock using base api url
+    >>> # Let's create the first chain of hammock using base API url
     >>> github = Github('https://api.github.com')
 
-    >>> # Ok, let the magic happens, ask github for hammock watchers
+    >>> # OK, let the magic happens, ask github for hammock watchers
     >>> resp = github.repos('kadirpekel', 'hammock').watchers.GET()
 
     __getattr__(self, name)

@@ -5,7 +5,7 @@
     __enter__(self)
     __exit__(self, exc_type, exc_value, traceback)
 
-- Useful for 'bookended' actions
+- Useful for 'book ended' actions
 - Simple exception handling
 - Built-in for File objects, etc. in 2.7
 
