@@ -131,9 +131,9 @@
     __delattr__(self, name)
     __getattribute__(self, name)
 
-    - Real encapsulation
-    - Not always a good idea
-    - Power means responsibility
+- Real encapsulation
+- Not always a good idea
+- Power means responsibility
 
 # Presenter Notes
 

@@ -11,9 +11,9 @@
     __getattr__(self, name)
     __call__(self, *args, **kwargs)
 
+- <strike>Extra documentation</strike>
+- <strike>Update for minor API changes</strike>
 - Web API wrapper [frappy](http://github.com/durden/frappy)
-- Documenting wrapper code sucks
-- Updating wrapper code sucks
 
 # Presenter Notes
 
