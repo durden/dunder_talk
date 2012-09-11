@@ -19,7 +19,7 @@ that get called at specific, well-defined times.
 - Pythonic
 - Operator overloading
 - Debugging tools
-- Avoid custom API/object symantics
+- Avoid custom API/object semantics
 - Domain Specific Language (DSL)
 - Your already using them
 

@@ -16,7 +16,7 @@
 
 # Presenter Notes
 
-- Immutuable only needs getitem, len
-- Mutuable needs setitem
+- Immutable only needs getitem, len
+- Mutable needs setitem
 - Implementing __contains__ usually not needed, default behavior is to loop
   over your items and return if it was found.

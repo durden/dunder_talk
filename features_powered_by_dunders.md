@@ -7,4 +7,4 @@
 - Descriptors
 - Callables
 - Pickling
-- Metaclasses
+- Meta classes
