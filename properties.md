@@ -37,6 +37,36 @@
 
 --------------------------------------------------
 
+# Property usage
+
+    !python
+    >>> u = User('luke', 'test')
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "<stdin>", line 6, in __init__
+    File "<stdin>", line 9, in set_email
+    TypeError
+
+    >>> u = User('luke', 'noreply@lukelee.net')
+    >>> u.email
+    'noreply@lukelee.net'
+
+    >>> u.set_email('test')
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "<stdin>", line 9, in set_email
+    TypeError
+
+    >>> u.set_email('test@test.com')
+    >>> u.email
+    'test@test.com'
+
+    >>> u._email = 'test'
+    >>> u.email
+    'test'
+
+--------------------------------------------------
+
 # Descriptor powered
 
     !python
@@ -111,7 +141,7 @@
             return instance.celsius * 9 / 5 + 32
 
         def __set__(self, instance, value):
-            instance.celsius = (float(value)-32) * 5 / 9
+            instance.celsius = (float(value) - 32) * 5 / 9
 
     class Temperature(object):
         celsius = Celsius()
