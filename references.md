@@ -2,7 +2,8 @@
 
 ## Code
 
-- [Pinboard links](http://pinboard.in/u:durden/t:dunder_talk/)
+- [Magic Methods](http://www.rafekettler.com/magicmethods.html)
+- [Code/Examples/Sources](http://pinboard.in/u:durden/t:dunder_talk/)
 - [Presentation](http://durden.github.com/dunder_talk/)
 - [Landslide](https://github.com/adamzap/landslide)
 
