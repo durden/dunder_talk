@@ -56,12 +56,18 @@
             <header><h1>Dunder What?</h1></header>
             
             
-            <section><h2>Power behind Python's object model</h2></section>
+            <section><h2>Power behind Python's object model</h2>
+</section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <ul>
+<li>Whose heard the term 'dunder' before?</li>
+<li>OK, so maybe at least a few of you will learn a new word today.</li>
+</ul>
             
             </section>
           </div>
@@ -72,7 +78,7 @@
             </aside>
             
             <aside class="page_number">
-              1/23
+              1/26
             </aside>
           </footer>
         </div>
@@ -107,7 +113,7 @@
             </aside>
             
             <aside class="page_number">
-              2/23
+              2/26
             </aside>
           </footer>
         </div>
@@ -147,7 +153,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              3/23
+              3/26
             </aside>
           </footer>
         </div>
@@ -166,7 +172,7 @@ that get called at specific, well-defined times.</p>
 <li>Pythonic</li>
 <li>Operator overloading</li>
 <li>Debugging tools</li>
-<li>Avoid custom API/object symantics</li>
+<li>Avoid custom API/object semantics</li>
 <li>Domain Specific Language (DSL)</li>
 <li>Your already using them</li>
 </ul></section>
@@ -185,7 +191,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              4/23
+              4/26
             </aside>
           </footer>
         </div>
@@ -247,7 +253,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              5/23
+              5/26
             </aside>
           </footer>
         </div>
@@ -269,7 +275,7 @@ that get called at specific, well-defined times.</p>
 <li>Descriptors</li>
 <li>Callables</li>
 <li>Pickling</li>
-<li>Metaclasses</li>
+<li>Meta classes</li>
 </ul></section>
             
           </div>
@@ -286,7 +292,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              6/23
+              6/26
             </aside>
           </footer>
         </div>
@@ -305,7 +311,7 @@ that get called at specific, well-defined times.</p>
 </pre></div>
 
 <ul>
-<li>Useful for 'bookended' actions</li>
+<li>Useful for 'book ended' actions</li>
 <li>Simple exception handling</li>
 <li>Built-in for File objects, etc. in 2.7</li>
 </ul></section>
@@ -324,7 +330,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              7/23
+              7/26
             </aside>
           </footer>
         </div>
@@ -341,29 +347,30 @@ that get called at specific, well-defined times.</p>
             <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Progress bar that normalizes progress to [0 - 100] scale&quot;&quot;&quot;</span>
 <span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
-<span class="lineno"> 4</span>         <span class="sd">&quot;&quot;&quot;Create progress bar with max_val&quot;&quot;&quot;</span>
-<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span> <span class="o">=</span> <span class="mf">100.0</span>
-<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_val</span><span class="p">)</span>
-<span class="lineno"> 8</span>     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="lineno"> 9</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
-<span class="lineno">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_val</span><span class="p">)</span>
+<span class="lineno"> 7</span>     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno"> 8</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno"> 9</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="lineno">10</span> 
 <span class="lineno">11</span>         <span class="c"># Important!</span>
 <span class="lineno">12</span>         <span class="k">return</span> <span class="bp">self</span>
 <span class="lineno">13</span>     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
-<span class="lineno">14</span>         <span class="sd">&quot;&quot;&quot;Start of context manager, &#39;with&#39; statement&quot;&quot;&quot;</span>
+<span class="lineno">14</span>         <span class="sd">&quot;&quot;&quot;End of context manager, leaving &#39;with&#39; statement&quot;&quot;&quot;</span>
 <span class="lineno">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span>
 <span class="lineno">16</span> 
 <span class="lineno">17</span>         <span class="c"># Not handling any exceptions, so they&#39;ll be raised automatically</span>
 <span class="lineno">18</span>         <span class="c"># To ignore exceptions return True or inspect arguments to handle</span>
 <span class="lineno">19</span>         <span class="k">return</span> <span class="bp">False</span>
-<span class="lineno">20</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="lineno">21</span>         <span class="sd">&quot;&quot;&quot;Update progress value&quot;&quot;&quot;</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="lineno">22</span>         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">:</span>
 <span class="lineno">23</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
 <span class="lineno">24</span>         <span class="k">else</span><span class="p">:</span>
 <span class="lineno">25</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_val</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_done_val</span>
-<span class="lineno">26</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\r</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span><span class="p">),</span>
+<span class="lineno">26</span> 
+<span class="lineno">27</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span><span class="p">),</span>
 </pre></div>
 </section>
             
@@ -381,7 +388,49 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              8/23
+              8/26
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: context_managers.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Context Manager usage</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+<span class="lineno"> 2</span> <span class="o">...</span>   <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="lineno"> 3</span> <span class="o">...</span>     <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+<span class="lineno"> 4</span> <span class="o">...</span> 
+<span class="lineno"> 5</span> <span class="mf">0.0</span> <span class="mf">20.0</span> <span class="mf">40.0</span> <span class="mf">60.0</span> <span class="mf">80.0</span> <span class="mf">100.0</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+<span class="lineno"> 8</span> <span class="o">...</span>   <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+<span class="lineno"> 9</span> <span class="o">...</span>     <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+<span class="lineno">10</span> <span class="o">...</span> 
+<span class="lineno">11</span> <span class="mf">0.0</span> <span class="mf">20.0</span> <span class="mf">100.0</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="context_managers.md">context_managers.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/26
             </aside>
           </footer>
         </div>
@@ -417,8 +466,8 @@ that get called at specific, well-defined times.</p>
             <section>
             
               <ul>
-<li>Immutuable only needs getitem, len</li>
-<li>Mutuable needs setitem</li>
+<li>Immutable only needs getitem, len</li>
+<li>Mutable needs setitem</li>
 <li>Implementing <strong>contains</strong> usually not needed, default behavior is to loop
   over your items and return if it was found.</li>
 </ul>
@@ -432,7 +481,59 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              9/23
+              10/26
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: ordered_dict.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>OrderedDict usage</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">collections</span>
+<span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> 
+<span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="lineno"> 5</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span><span class="p">[</span><span class="s">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span><span class="p">[</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ordered_dict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span> <span class="k">print</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span>
+<span class="lineno"> 8</span> <span class="o">...</span> 
+<span class="lineno"> 9</span> <span class="n">a</span> <span class="mi">1</span>
+<span class="lineno">10</span> <span class="n">b</span> <span class="mi">2</span>
+<span class="lineno">11</span> <span class="n">c</span> <span class="mi">3</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">unordered_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="lineno">14</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">unordered_dict</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="lineno">15</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">unordered_dict</span><span class="p">[</span><span class="s">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="lineno">16</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">unordered_dict</span><span class="p">[</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="lineno">17</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unordered_dict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span> <span class="k">print</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span>
+<span class="lineno">18</span> <span class="o">...</span> 
+<span class="lineno">19</span> <span class="n">a</span> <span class="mi">1</span>
+<span class="lineno">20</span> <span class="n">c</span> <span class="mi">3</span>
+<span class="lineno">21</span> <span class="n">b</span> <span class="mi">2</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="ordered_dict.md">ordered_dict.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/26
             </aside>
           </footer>
         </div>
@@ -467,7 +568,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              10/23
+              12/26
             </aside>
           </footer>
         </div>
@@ -522,7 +623,62 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              11/23
+              13/26
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: properties.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Property usage</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s">&#39;luke&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="lineno"> 3</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="lineno"> 4</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="n">__init__</span>
+<span class="lineno"> 5</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="n">set_email</span>
+<span class="lineno"> 6</span> <span class="ne">TypeError</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s">&#39;luke&#39;</span><span class="p">,</span> <span class="s">&#39;noreply@lukelee.net&#39;</span><span class="p">)</span>
+<span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">email</span>
+<span class="lineno">10</span> <span class="s">&#39;noreply@lukelee.net&#39;</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">set_email</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span>
+<span class="lineno">13</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="lineno">14</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="lineno">15</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="n">set_email</span>
+<span class="lineno">16</span> <span class="ne">TypeError</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">set_email</span><span class="p">(</span><span class="s">&#39;test@test.com&#39;</span><span class="p">)</span>
+<span class="lineno">19</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">email</span>
+<span class="lineno">20</span> <span class="s">&#39;test@test.com&#39;</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="s">&#39;test&#39;</span>
+<span class="lineno">23</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="o">.</span><span class="n">email</span>
+<span class="lineno">24</span> <span class="s">&#39;test&#39;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="properties.md">properties.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/26
             </aside>
           </footer>
         </div>
@@ -550,7 +706,7 @@ that get called at specific, well-defined times.</p>
             
               <ul>
 <li>owner is class instance</li>
-<li>Fancy wording for class that overrides attribute lookup w/ dunders</li>
+<li>Fancy wording for class that overrides attribute look up w/ dunders</li>
 <li><strong>delete</strong> called for descriptor attribute deletion</li>
 <li><strong>del</strong> called in other scenarios right before obj deleted</li>
 </ul>
@@ -564,7 +720,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              12/23
+              15/26
             </aside>
           </footer>
         </div>
@@ -623,7 +779,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              13/23
+              16/26
             </aside>
           </footer>
         </div>
@@ -656,7 +812,7 @@ that get called at specific, well-defined times.</p>
 <span class="lineno">17</span>         <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
 <span class="lineno">18</span> 
 <span class="lineno">19</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="lineno">20</span>         <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">-</span><span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+<span class="lineno">20</span>         <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
 <span class="lineno">21</span> 
 <span class="lineno">22</span> <span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno">23</span>     <span class="n">celsius</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">()</span>
@@ -681,7 +837,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              14/23
+              17/26
             </aside>
           </footer>
         </div>
@@ -699,12 +855,13 @@ that get called at specific, well-defined times.</p>
 <span class="lineno">2</span> <span class="n">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="lineno">3</span> <span class="n">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="lineno">4</span> <span class="n">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="lineno">5</span> 
-<span class="lineno">6</span> <span class="o">-</span> <span class="n">Real</span> <span class="n">encapsulation</span>
-<span class="lineno">7</span> <span class="o">-</span> <span class="n">Not</span> <span class="n">always</span> <span class="n">a</span> <span class="n">good</span> <span class="n">idea</span>
-<span class="lineno">8</span> <span class="o">-</span> <span class="n">Power</span> <span class="n">means</span> <span class="n">responsibility</span>
 </pre></div>
 
+<ul>
+<li>Real encapsulation</li>
+<li>Not always a good idea</li>
+<li>Power means responsibility</li>
+</ul>
 </section>
             
           </div>
@@ -714,8 +871,8 @@ that get called at specific, well-defined times.</p>
             
               <ul>
 <li>getattr called only for missing attributes</li>
-<li>Useful for throwing a good error message or metaprogramming</li>
-<li>getattribute is called for all lookup, be careful</li>
+<li>Useful for throwing a good error message or meta programming</li>
+<li>getattribute is called for all look up, be careful</li>
 </ul>
             
             </section>
@@ -727,7 +884,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              15/23
+              18/26
             </aside>
           </footer>
         </div>
@@ -774,7 +931,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              16/23
+              19/26
             </aside>
           </footer>
         </div>
@@ -831,7 +988,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              17/23
+              20/26
             </aside>
           </footer>
         </div>
@@ -846,25 +1003,31 @@ that get called at specific, well-defined times.</p>
             
             
             <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
-<span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;a&#39;</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s">&#39;b&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;c&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">})</span>
-<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>
-<span class="lineno"> 4</span> <span class="n">a</span>    <span class="mi">0</span>
-<span class="lineno"> 5</span> <span class="n">b</span>    <span class="mi">1</span>
-<span class="lineno"> 6</span> <span class="n">c</span>    <span class="mi">2</span>
-<span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="lineno"> 8</span> <span class="mf">0.0</span>
-<span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
-<span class="lineno">10</span> <span class="n">c</span>    <span class="mi">2</span>
-<span class="lineno">11</span> <span class="n">b</span>    <span class="mi">1</span>
-<span class="lineno">12</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
-<span class="lineno">13</span> <span class="mf">2.0</span>
-<span class="lineno">14</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
-<span class="lineno">15</span> <span class="n">b</span>    <span class="mi">1</span>
-<span class="lineno">16</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Series is 1-d numpy array with labels</span>
+<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;a&#39;</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s">&#39;b&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;c&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">})</span>
+<span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>
+<span class="lineno"> 5</span> <span class="n">a</span>    <span class="mi">0</span>
+<span class="lineno"> 6</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno"> 7</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno"> 8</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="lineno"> 9</span> <span class="mf">0.0</span>
+<span class="lineno">10</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="lineno">11</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno">12</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno">13</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+<span class="lineno">14</span> <span class="mf">2.0</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+<span class="lineno">17</span> <span class="n">b</span>    <span class="mi">1</span>
+<span class="lineno">18</span> <span class="n">c</span>    <span class="mi">2</span>
+<span class="lineno">19</span> 
+<span class="lineno">20</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="lineno">21</span> <span class="n">a</span>    <span class="mi">0</span>
+<span class="lineno">22</span> <span class="n">b</span>    <span class="mi">3</span>
+<span class="lineno">23</span> <span class="n">c</span>    <span class="mi">6</span>
 </pre></div>
 
 <ul>
-<li>Data analysis package built on numpy</li>
 <li>Supports tons of fancy indexing</li>
 <li>See pandas/core/series.py</li>
 </ul>
@@ -888,7 +1051,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              18/23
+              21/26
             </aside>
           </footer>
         </div>
@@ -906,23 +1069,27 @@ that get called at specific, well-defined times.</p>
 <span class="lineno"> 2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 <span class="lineno"> 3</span> 
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="lineno"> 5</span> <span class="o">...</span>     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-<span class="lineno"> 6</span> <span class="o">...</span>         <span class="k">print</span> <span class="s">&#39;</span><span class="si">%-15s</span><span class="s">  </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">items</span><span class="p">),</span> <span class="n">items</span><span class="p">)</span>
-<span class="lineno"> 7</span> <span class="o">...</span>
+<span class="lineno"> 5</span>         <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="lineno"> 6</span>             <span class="k">print</span> <span class="s">&#39;</span><span class="si">%-15s</span><span class="s">  </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">key</span><span class="p">)</span>
+<span class="lineno"> 7</span> 
 <span class="lineno"> 8</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
 <span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="lineno">10</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;int&#39;</span><span class="o">&gt;</span>     <span class="mi">1</span>
-<span class="lineno">11</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;hello world&#39;</span><span class="p">]</span>
-<span class="lineno">12</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;str&#39;</span><span class="o">&gt;</span>     <span class="n">hello</span> <span class="n">world</span>
-<span class="lineno">13</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
-<span class="lineno">14</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;tuple&#39;</span><span class="o">&gt;</span>   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
-<span class="lineno">15</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">200</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-<span class="lineno">16</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="lineno">17</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="s">&#39;z&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="lineno">18</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="lineno">19</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="nb">object</span><span class="p">()]</span>
-<span class="lineno">20</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;object&#39;</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10aaf40d0</span><span class="o">&gt;</span>
-<span class="lineno">21</span> <span class="o">&gt;&gt;&gt;</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;hello world&#39;</span><span class="p">]</span>
+<span class="lineno">13</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;str&#39;</span><span class="o">&gt;</span>     <span class="n">hello</span> <span class="n">world</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
+<span class="lineno">16</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;tuple&#39;</span><span class="o">&gt;</span>   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">200</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="lineno">19</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="s">&#39;z&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="lineno">22</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;slice&#39;</span><span class="o">&gt;</span>   <span class="nb">slice</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="lineno">23</span> 
+<span class="lineno">24</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="nb">object</span><span class="p">()]</span>
+<span class="lineno">25</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;object&#39;</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10aaf40d0</span><span class="o">&gt;</span>
 </pre></div>
 
 <ul>
@@ -943,7 +1110,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              19/23
+              22/26
             </aside>
           </footer>
         </div>
@@ -968,9 +1135,9 @@ that get called at specific, well-defined times.</p>
 </pre></div>
 
 <ul>
+<li><strike>Extra documentation</strike></li>
+<li><strike>Update for minor API changes</strike></li>
 <li>Web API wrapper <a href="http://github.com/durden/frappy">frappy</a></li>
-<li>Documenting wrapper code sucks</li>
-<li>Updating wrapper code sucks</li>
 </ul>
 </section>
             
@@ -982,7 +1149,7 @@ that get called at specific, well-defined times.</p>
               <ul>
 <li>Main idea was to have a python wrapper for any REST API that didn't need it's
   own documentation or constant updates.</li>
-<li>Metaprogramming</li>
+<li>Meta programming</li>
 <li>Create object with base domain name to query</li>
 <li>Add missing attributes onto url, add args at the end as query string</li>
 </ul>
@@ -996,7 +1163,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              20/23
+              23/26
             </aside>
           </footer>
         </div>
@@ -1013,10 +1180,10 @@ that get called at specific, well-defined times.</p>
             <section><h2>Hammock</h2>
 <div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">hammock</span> <span class="kn">import</span> <span class="n">Hammock</span> <span class="k">as</span> <span class="n">Github</span>
 <span class="lineno"> 2</span> 
-<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Let&#39;s create the first chain of hammock using base api url</span>
+<span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Let&#39;s create the first chain of hammock using base API url</span>
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">github</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s">&#39;https://api.github.com&#39;</span><span class="p">)</span>
 <span class="lineno"> 5</span> 
-<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Ok, let the magic happens, ask github for hammock watchers</span>
+<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># OK, let the magic happens, ask github for hammock watchers</span>
 <span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">repos</span><span class="p">(</span><span class="s">&#39;kadirpekel&#39;</span><span class="p">,</span> <span class="s">&#39;hammock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">watchers</span><span class="o">.</span><span class="n">GET</span><span class="p">()</span>
 <span class="lineno"> 8</span> 
 <span class="lineno"> 9</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -1045,7 +1212,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              21/23
+              24/26
             </aside>
           </footer>
         </div>
@@ -1090,7 +1257,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              22/23
+              25/26
             </aside>
           </footer>
         </div>
@@ -1106,7 +1273,8 @@ that get called at specific, well-defined times.</p>
             
             <section><h2>Code</h2>
 <ul>
-<li><a href="http://pinboard.in/u:durden/t:dunder_talk/">Pinboard links</a></li>
+<li><a href="http://www.rafekettler.com/magicmethods.html">Magic Methods</a></li>
+<li><a href="http://pinboard.in/u:durden/t:dunder_talk/">Code/Examples/Sources</a></li>
 <li><a href="http://durden.github.com/dunder_talk/">Presentation</a></li>
 <li><a href="https://github.com/adamzap/landslide">Landslide</a></li>
 </ul>
@@ -1133,7 +1301,7 @@ that get called at specific, well-defined times.</p>
             </aside>
             
             <aside class="page_number">
-              23/23
+              26/26
             </aside>
           </footer>
         </div>
@@ -1196,94 +1364,112 @@ that get called at specific, well-defined times.</p>
       
       
       <tr id="toc-row-9">
-        <th><a href="#slide9">OrderedDict</a></th>
+        <th><a href="#slide9">Context Manager usage</a></th>
         <td><a href="#slide9">9</a></td>
       </tr>
       
       
       <tr id="toc-row-10">
-        <th><a href="#slide10">Properties</a></th>
+        <th><a href="#slide10">OrderedDict</a></th>
         <td><a href="#slide10">10</a></td>
       </tr>
       
       
       <tr id="toc-row-11">
-        <th><a href="#slide11">Properties</a></th>
+        <th><a href="#slide11">OrderedDict usage</a></th>
         <td><a href="#slide11">11</a></td>
       </tr>
       
       
       <tr id="toc-row-12">
-        <th><a href="#slide12">Descriptor powered</a></th>
+        <th><a href="#slide12">Properties</a></th>
         <td><a href="#slide12">12</a></td>
       </tr>
       
-        
-        <tr id="toc-row-13" class="sub">
-          <th><a href="#slide13">Pure Python equivalent</a></th>
-          <td><a href="#slide13">13</a></td>
-        </tr>
-        
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Properties</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
       
       
       <tr id="toc-row-14">
-        <th><a href="#slide14">Homemade Descriptor</a></th>
+        <th><a href="#slide14">Property usage</a></th>
         <td><a href="#slide14">14</a></td>
       </tr>
       
       
       <tr id="toc-row-15">
-        <th><a href="#slide15">Properties extended</a></th>
+        <th><a href="#slide15">Descriptor powered</a></th>
         <td><a href="#slide15">15</a></td>
       </tr>
       
-      
-      <tr id="toc-row-16">
-        <th><a href="#slide16">Dunders in the wild</a></th>
-        <td><a href="#slide16">16</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-17">
-        <th><a href="#slide17">Peewee ORM</a></th>
-        <td><a href="#slide17">17</a></td>
-      </tr>
-      
         
-        <tr id="toc-row-18" class="sub">
-          <th><a href="#slide18">Pandas</a></th>
-          <td><a href="#slide18">18</a></td>
+        <tr id="toc-row-16" class="sub">
+          <th><a href="#slide16">Pure Python equivalent</a></th>
+          <td><a href="#slide16">16</a></td>
         </tr>
         
       
       
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Homemade Descriptor</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Properties extended</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
       <tr id="toc-row-19">
-        <th><a href="#slide19">Pandas secrets</a></th>
+        <th><a href="#slide19">Dunders in the wild</a></th>
         <td><a href="#slide19">19</a></td>
       </tr>
       
       
       <tr id="toc-row-20">
-        <th><a href="#slide20">My Dunder ideas/attempts</a></th>
+        <th><a href="#slide20">Peewee ORM</a></th>
         <td><a href="#slide20">20</a></td>
       </tr>
       
-      
-      <tr id="toc-row-21">
-        <th><a href="#slide21">Better than a Frappy</a></th>
-        <td><a href="#slide21">21</a></td>
-      </tr>
+        
+        <tr id="toc-row-21" class="sub">
+          <th><a href="#slide21">Pandas</a></th>
+          <td><a href="#slide21">21</a></td>
+        </tr>
+        
       
       
       <tr id="toc-row-22">
-        <th><a href="#slide22">Python Philosophy</a></th>
+        <th><a href="#slide22">Pandas secrets</a></th>
         <td><a href="#slide22">22</a></td>
       </tr>
       
       
       <tr id="toc-row-23">
-        <th><a href="#slide23">References</a></th>
+        <th><a href="#slide23">My Dunder ideas/attempts</a></th>
         <td><a href="#slide23">23</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Better than a Frappy</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-25">
+        <th><a href="#slide25">Python Philosophy</a></th>
+        <td><a href="#slide25">25</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-26">
+        <th><a href="#slide26">References</a></th>
+        <td><a href="#slide26">26</a></td>
       </tr>
       
       
