@@ -35,6 +35,8 @@ that get called at specific, well-defined times.
     __len__(self)
     __repr__(self)
 
+- [Old-style class dunder lookup](http://stackoverflow.com/questions/12223836/lookup-of-magic-methods-on-old-style-python-classes)
+
 # Presenter Notes
 
 - init/creation are separate steps for a good reason.
@@ -49,5 +51,3 @@ that get called at specific, well-defined times.
 - Different for old-style classes, some magic involved
 
 - Similar in theory to __str__, called by unicode(), etc.
-
-- [Old-style dunder lookup](http://stackoverflow.com/questions/12223836/lookup-of-magic-methods-on-old-style-python-classes)
