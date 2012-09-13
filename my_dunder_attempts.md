@@ -25,9 +25,7 @@
 
 --------------------------------------------------
 
-# Better than a Frappy
-
-## Hammock
+# Hammock
 
     !python
 

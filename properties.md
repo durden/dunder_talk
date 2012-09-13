@@ -136,6 +136,8 @@
 
 # Custom Descriptor
 
+    !python
+
     class Celsius(object):
         """Fundamental Temperature Descriptor."""
         def __init__(self, value=0.0):
