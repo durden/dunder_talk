@@ -118,31 +118,38 @@
 
 --------------------------------------------------
 
-# Homemade Descriptor
+# Custom Descriptor
 
     !python
 
+    >>> texas = Temperature()
+    >>> texas.farenheit = 98
+    >>> texas.celsius
+    36.666666666666664
+    >>> texas.farenheit
+    98.0
+    >>> texas.celsius = 38
+    >>> texas.farenheit
+    100.4
+
+--------------------------------------------------
+
+# Custom Descriptor
+
     class Celsius(object):
         """Fundamental Temperature Descriptor."""
-
         def __init__(self, value=0.0):
             self.value = float(value)
-
         def __get__(self, instance, owner):
             return self.value
-
         def __set__(self, instance, value):
             self.value = float(value)
-
-    class Farenheit( object ):
+    class Farenheit(object):
         """Requires that the owner have a ``celsius`` attribute."""
-
         def __get__(self, instance, owner):
             return instance.celsius * 9 / 5 + 32
-
         def __set__(self, instance, value):
             instance.celsius = (float(value) - 32) * 5 / 9
-
     class Temperature(object):
         celsius = Celsius()
         farenheit = Farenheit()
