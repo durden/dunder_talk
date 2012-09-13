@@ -84,7 +84,7 @@
 
 --------------------------------------------------
 
-## Pure Python equivalent
+## Pure Python property
 
     !python
 
