@@ -11,6 +11,23 @@
 
 --------------------------------------------------
 
+# Context Manager usage
+
+    !python
+    >>> with ProgressBar(5) as p:
+    ...   for ii in xrange(5):
+    ...     p.update(ii)
+    ...
+    0.0 20.0 40.0 60.0 80.0 100.0
+
+    >>> with ProgressBar(5) as p:
+    ...   for ii in xrange(2):
+    ...     p.update(ii)
+    ...
+    0.0 20.0 100.0
+
+--------------------------------------------------
+
 # Context Manager example
 
     !python
@@ -41,20 +58,3 @@
                 self._curr_val = (value / self._max_val) * self._done_val
 
             print '%s' % (self._curr_val),
-
---------------------------------------------------
-
-# Context Manager usage
-
-    !python
-    >>> with ProgressBar(5) as p:
-    ...   for ii in xrange(5):
-    ...     p.update(ii)
-    ...
-    0.0 20.0 40.0 60.0 80.0 100.0
-
-    >>> with ProgressBar(5) as p:
-    ...   for ii in xrange(2):
-    ...     p.update(ii)
-    ...
-    0.0 20.0 100.0
