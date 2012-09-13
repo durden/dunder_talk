@@ -1,5 +1,5 @@
 # Dunder What?
-## Power behind Python's object model
+## The power behind Python's object model
 
 # Presenter Notes
 - Whose heard the term 'dunder' before?

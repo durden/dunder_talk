@@ -3,7 +3,8 @@
 - Dunder just slang for double underscore
 - 'Private' class methods
 - Sometimes called 'magic methods'
-- Just poorly documented
+- Just a method with defined input/output
+- Poorly documented
 
 # Presenter Notes
 
@@ -13,15 +14,15 @@ that get called at specific, well-defined times.
 
 ------------------------------------------------------
 
-# Why?
+# Why dunders?
 
-- Very common/widely used
+- Your already using them
+- Very common
 - Pythonic
 - Operator overloading
 - Debugging tools
 - Avoid custom API/object semantics
 - Domain Specific Language (DSL)
-- Your already using them
 
 ------------------------------------------------------
 

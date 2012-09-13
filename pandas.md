@@ -34,7 +34,7 @@
 
 --------------------------------------------------
 
-# Pandas secrets
+# Panda's secrets
 
     !python
 
