@@ -1,12 +1,9 @@
 # Dunders in the wild
 
+- Parsers: (HTML, markdown, XML)
+- Debugging tools: (IPython, PyCharm)
 - ORM
-- Parser
-    - HTML
-    - markdown
-    - XML
-- Debugging tools
-    - IPython
+
 
 # Presenter Notes
 
