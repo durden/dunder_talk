@@ -1,12 +1,14 @@
 # Dunder Basics
 
 - Dunder just slang for double underscore
-- 'Private' class methods
 - Sometimes called 'magic methods'
-- Just a method with defined input/output
+- 'Private' class methods
+- Just methods!
 - Poorly documented
 
 # Presenter Notes
+
+Lookup the args and when it's called and your good!
 
 Use of 'magic' here is a poor choice since the Python community values
 not using magic.  In fact, dunder methods are just plain old methods
@@ -17,12 +19,18 @@ that get called at specific, well-defined times.
 # Why dunders?
 
 - Your already using them
-- Very common
-- Pythonic
+- Pythonic (common/idiomatic)
 - Operator overloading
 - Debugging tools
 - Avoid custom API/object semantics
 - Domain Specific Language (DSL)
+
+# Presenter Notes
+
+Main goal is to make your object look and act like a standard Python type.
+
+The person using your object already knows Python and how to use standard
+types so don't make them learn all new semantics.
 
 ------------------------------------------------------
 

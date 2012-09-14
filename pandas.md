@@ -38,7 +38,7 @@
 
     !python
 
-    __ge__(self, other_instance)
+    __ge__(self, rhs)
     __getitem__(self, key)
 
     >>> class Test(object):

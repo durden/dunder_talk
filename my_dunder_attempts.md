@@ -34,7 +34,7 @@
     >>> # Let's create the first chain of hammock using base API url
     >>> github = Github('https://api.github.com')
 
-    >>> # OK, let the magic happens, ask github for hammock watchers
+    >>> # OK, let the magic happen, ask github for hammock watchers
     >>> resp = github.repos('kadirpekel', 'hammock').watchers.GET()
 
     __getattr__(self, name)
