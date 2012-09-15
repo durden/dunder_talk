@@ -37,6 +37,9 @@
     >>> # OK, let the magic happen, ask github for hammock watchers
     >>> resp = github.repos('kadirpekel', 'hammock').watchers.GET()
 
+    >>> api = hammock.Hammock('http://localhost:8000')
+    >>> api('users')('foo', 'posts').GET('bar', 'comments')
+
     __getattr__(self, name)
     __call__(self, *args, **kwargs)
     __iter__(self)
