@@ -67,6 +67,9 @@
               <ul>
 <li>Whose heard the term 'dunder' before?</li>
 <li>OK, so maybe at least a few of you will learn a new word today.</li>
+<li>This is essentially a tour of dunder methods and their uses.</li>
+<li>Not exhaustive and not super detailed.</li>
+<li>Designed to give you a bunch of things to explore and look up.</li>
 </ul>
             
             </section>
@@ -129,9 +132,9 @@
             
             <section><ul>
 <li>Dunder just slang for double underscore</li>
-<li>'Private' class methods</li>
 <li>Sometimes called 'magic methods'</li>
-<li>Just a method with defined input/output</li>
+<li>'Private' class methods</li>
+<li>Just methods!</li>
 <li>Poorly documented</li>
 </ul>
 </section>
@@ -141,7 +144,8 @@
             <header><h1>Presenter Notes</h1></header>
             <section>
             
-              <p>Use of 'magic' here is a poor choice since the Python community values
+              <p>Lookup the args and when it's called and your good!</p>
+<p>Use of 'magic' here is a poor choice since the Python community values
 not using magic.  In fact, dunder methods are just plain old methods
 that get called at specific, well-defined times.</p>
             
@@ -170,18 +174,22 @@ that get called at specific, well-defined times.</p>
             
             <section><ul>
 <li>Your already using them</li>
-<li>Very common</li>
-<li>Pythonic</li>
+<li>Pythonic (common/idiomatic)</li>
 <li>Operator overloading</li>
 <li>Debugging tools</li>
 <li>Avoid custom API/object semantics</li>
 <li>Domain Specific Language (DSL)</li>
-</ul></section>
+</ul>
+</section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <p>Main goal is to make your object look and act like a standard Python type.</p>
+<p>The person using your object already knows Python and how to use standard
+types so don't make them learn all new semantics.</p>
             
             </section>
           </div>
@@ -269,14 +277,13 @@ that get called at specific, well-defined times.</p>
             
             
             <section><ul>
-<li>Operator overloading</li>
 <li>Context Managers</li>
 <li>Collections module</li>
 <li>Properties</li>
 <li>Descriptors</li>
 <li>Callables</li>
 <li>Pickling</li>
-<li>Meta classes</li>
+<li>Operator overloading</li>
 </ul></section>
             
           </div>
@@ -838,19 +845,24 @@ that get called at specific, well-defined times.</p>
 <span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Fundamental Temperature Descriptor.&quot;&quot;&quot;</span>
 <span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="lineno"> 5</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
-<span class="lineno"> 6</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
-<span class="lineno"> 7</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="lineno"> 8</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Farenheit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="lineno">10</span>     <span class="sd">&quot;&quot;&quot;Requires that the owner have a ``celsius`` attribute.&quot;&quot;&quot;</span>
-<span class="lineno">11</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
-<span class="lineno">12</span>         <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
-<span class="lineno">13</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="lineno">14</span>         <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
-<span class="lineno">15</span> <span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="lineno">16</span>     <span class="n">celsius</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">()</span>
-<span class="lineno">17</span>     <span class="n">farenheit</span> <span class="o">=</span> <span class="n">Farenheit</span><span class="p">()</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+<span class="lineno"> 7</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="k">class</span> <span class="nc">Farenheit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno">13</span>     <span class="sd">&quot;&quot;&quot;Requires that the owner have a ``celsius`` attribute.&quot;&quot;&quot;</span>
+<span class="lineno">14</span>     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+<span class="lineno">15</span>         <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="lineno">18</span>         <span class="n">instance</span><span class="o">.</span><span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+<span class="lineno">19</span> 
+<span class="lineno">20</span> <span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno">21</span>     <span class="n">celsius</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">()</span>
+<span class="lineno">22</span>     <span class="n">farenheit</span> <span class="o">=</span> <span class="n">Farenheit</span><span class="p">()</span>
 </pre></div>
 
 <ul>
@@ -1091,7 +1103,7 @@ that get called at specific, well-defined times.</p>
             <header><h1>Panda's secrets</h1></header>
             
             
-            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_instance</span><span class="p">)</span>
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <span class="lineno"> 2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 <span class="lineno"> 3</span> 
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -1208,13 +1220,16 @@ that get called at specific, well-defined times.</p>
 <span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Let&#39;s create the first chain of hammock using base API url</span>
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">github</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s">&#39;https://api.github.com&#39;</span><span class="p">)</span>
 <span class="lineno"> 5</span> 
-<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># OK, let the magic happens, ask github for hammock watchers</span>
+<span class="lineno"> 6</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># OK, let the magic happen, ask github for hammock watchers</span>
 <span class="lineno"> 7</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">repos</span><span class="p">(</span><span class="s">&#39;kadirpekel&#39;</span><span class="p">,</span> <span class="s">&#39;hammock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">watchers</span><span class="o">.</span><span class="n">GET</span><span class="p">()</span>
 <span class="lineno"> 8</span> 
-<span class="lineno"> 9</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="lineno">10</span> <span class="n">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="lineno">11</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="lineno">12</span> <span class="n">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno"> 9</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">api</span> <span class="o">=</span> <span class="n">hammock</span><span class="o">.</span><span class="n">Hammock</span><span class="p">(</span><span class="s">&#39;http://localhost:8000&#39;</span><span class="p">)</span>
+<span class="lineno">10</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">api</span><span class="p">(</span><span class="s">&#39;users&#39;</span><span class="p">)(</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;posts&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">GET</span><span class="p">(</span><span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;comments&#39;</span><span class="p">)</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="lineno">13</span> <span class="n">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="lineno">14</span> <span class="n">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="lineno">15</span> <span class="n">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </pre></div>
 
 <ul>
