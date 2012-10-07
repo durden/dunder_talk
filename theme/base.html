@@ -4,8 +4,8 @@
 	<title>Ribbon theme for Shower</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=1274, user-scalable=no">
-	<link rel="stylesheet" href="styles/screen.css">
-	<link rel="stylesheet" href="styles/print.css" media="print">
+	<link rel="stylesheet" href="theme/css/screen.css">
+	<link rel="stylesheet" href="theme/css/print.css" media="print">
 </head>
 <body class="list debug">
 	<header class="caption">
@@ -22,22 +22,21 @@
             <section>{{ slide.content }}</section>
             {% endif %}
         </div></section>
-    {% endfor %}
-
-    <!--<div class="presenter_notes">
-        <header><h1>Presenter Notes</h1></header>
-        <section>
-        {% if slide.presenter_notes %}
-            {{ slide.presenter_notes }}
-        {% endif %}
-        </section>
-    </div>-->
+       <!--<div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            {% if slide.presenter_notes %}
+                {{ slide.presenter_notes }}
+            {% endif %}
+            </section>
+        </div>-->
+     {% endfor %}
 	<!--
 		To hide progress bar from entire presentation
 		just remove “progress” element.
 		-->
 	<div class="progress"><div></div></div>
-	<script src="js/script.js"></script>
+	<script src="theme/js/script.js"></script>
 	<!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
 </body>
 </html>
