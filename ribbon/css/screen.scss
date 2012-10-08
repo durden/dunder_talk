@@ -132,25 +132,24 @@ body {
 		}
 	// Code
 	pre {
-		margin:0 0 50px;
 		counter-reset:code;
 		white-space:normal;
-		code {
-			display:block;
-			padding:0;
-			background:none;
-			white-space:pre;
-			line-height:50px;
-			&:before {
-				position:absolute;
-				margin:0 0 0 -110px;
-				width:100px;
-				color:#BBB;
-				text-align:right;
-				counter-increment:code;
-				content:counter(code, decimal-leading-zero)'.';
-				}
-			}
+        display:block;
+        padding:0;
+        background:none;
+        white-space:pre;
+        line-height:30px;
+        font-size: 20px;
+		font-family:'PT Mono', monospace;
+        &:before {
+            position:absolute;
+            margin:0 0 0 -110px;
+            width:100px;
+            color:#BBB;
+            text-align:right;
+            counter-increment:code;
+            content:counter(code, decimal-leading-zero)'.';
+            }
 		mark {
 			margin:0 -8px;
 			padding:3px 8px;
@@ -398,7 +397,7 @@ body {
 	.progress {
 		position:absolute;
 		right:118px;
-		bottom:40px;
+		bottom:20px;
 		left:118px;
 		div {
 			width:0;
@@ -410,6 +409,7 @@ body {
 			}
 		}
 	}
+
 
 /* Pygments default theme */
 .hll { background-color: #ffffcc }
