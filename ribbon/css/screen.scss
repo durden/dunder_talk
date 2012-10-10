@@ -365,11 +365,11 @@ body {
 		visibility:hidden;
 		&:after {
 			position:absolute;
-			left:120px;
-			bottom:80px;
+			right:120px;
+			bottom:40px;
 			color:#CCC;
 			line-height:18px;
-			font-size:25px;
+			font-size:20px;
 			}
 		&:target {
 			visibility:visible;
