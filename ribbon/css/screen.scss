@@ -132,7 +132,6 @@ body {
 		}
 	// Code
 	pre {
-		counter-reset:code;
 		white-space:normal;
         display:block;
         padding:0;
@@ -147,8 +146,6 @@ body {
             width:100px;
             color:#BBB;
             text-align:right;
-            counter-increment:code;
-            content:counter(code, decimal-leading-zero)'.';
             }
 		mark {
 			margin:0 -8px;

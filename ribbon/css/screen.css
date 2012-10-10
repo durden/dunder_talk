@@ -160,7 +160,6 @@ body {
   counter-increment: list;
   content: counter(list) ".\00A0"; }
 .slide pre {
-  counter-reset: code;
   white-space: normal;
   display: block;
   padding: 0;
@@ -174,9 +173,7 @@ body {
     margin: 0 0 0 -110px;
     width: 100px;
     color: #BBB;
-    text-align: right;
-    counter-increment: code;
-    content: counter(code, decimal-leading-zero) "."; }
+    text-align: right; }
   .slide pre mark {
     margin: 0 -8px;
     padding: 3px 8px;
