@@ -137,8 +137,8 @@ body {
         padding:0;
         background:none;
         white-space:pre;
-        line-height:30px;
-        font-size: 20px;
+        line-height:22px;
+        font-size: 16px;
 		font-family:'PT Mono', monospace;
         &:before {
             position:absolute;
@@ -390,12 +390,13 @@ body {
 			display:block;
 			}
 		}
+
 	// Progress
 	.progress {
-		position:absolute;
+        position:absolute;
 		right:118px;
-		bottom:20px;
 		left:118px;
+        bottom: 10px;
 		div {
 			width:0;
 			height:10px;
@@ -406,7 +407,6 @@ body {
 			}
 		}
 	}
-
 
 /* Pygments default theme */
 .hll { background-color: #ffffcc }

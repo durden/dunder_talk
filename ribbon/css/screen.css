@@ -165,8 +165,8 @@ body {
   padding: 0;
   background: none;
   white-space: pre;
-  line-height: 30px;
-  font-size: 20px;
+  line-height: 22px;
+  font-size: 16px;
   font-family: 'PT Mono', monospace; }
   .slide pre:before {
     position: absolute;
@@ -415,8 +415,8 @@ body {
   .full .progress {
     position: absolute;
     right: 118px;
-    bottom: 20px;
-    left: 118px; }
+    left: 118px;
+    bottom: 10px; }
     .full .progress div {
       width: 0;
       height: 10px;

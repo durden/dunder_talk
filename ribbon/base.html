@@ -46,21 +46,18 @@
     <!-- /Javascripts -->
 </head>
 <body class="list">
-	<header class="caption">
-		<h1>Presentation Title</h1>
-		<p><a href="">Author Name</a></p>
-	</header>
     {% for slide in slides %}
       <!-- slide source: {% if slide.source %}{{ slide.source.rel_path }}{% endif %} -->
         <section class="slide{% if slide.classes %}{% for class in slide.classes %} {{ class }}{% endfor %}{% endif %}">
-        <div>
-            {% if slide.header %}
-                <h2>{{ slide.header }}</h2>
-            {% endif %}
-            {% if slide.content %}
-            <section>{{ slide.content }}</section>
-            {% endif %}
-        </div></section>
+            <div>
+                {% if slide.header %}
+                    <h2>{{ slide.header }}</h2>
+                {% endif %}
+                {% if slide.content %}
+                    <section>{{ slide.content }}</section>
+                {% endif %}
+            </div>
+        </section>
        <!--<div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
