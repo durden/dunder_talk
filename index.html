@@ -27,25 +27,24 @@
                     <header><h1>Dunder What?</h1></header>
                 
                 
-                    <section><h2>The power behind Python's object model</h2>
+                    <section class="slide-content"><h2>The power behind Python's object model</h2>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>Whose heard the term 'dunder' before?</li>
 <li>OK, so maybe at least a few of you will learn a new word today.</li>
 <li>This is essentially a tour of dunder methods and their uses.</li>
 <li>Not exhaustive and not super detailed.</li>
 <li>Designed to give you a bunch of things to explore and look up.</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: about.md -->
         <section class="slide">
@@ -54,21 +53,20 @@
                     <header><h1>Luke Lee</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Software Engineer at <a href="http://www.blueback-reservoir.com/">Blueback Reservoir</a></li>
 <li>Data mining apps in Python</li>
 <li>Embedded C Developer</li>
 <li>Django enthusiast</li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: dunder_basics.md -->
         <section class="slide">
@@ -77,7 +75,7 @@
                     <header><h1>Dunder Basics</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Dunder just slang for double underscore</li>
 <li>Sometimes called 'magic methods'</li>
 <li>'Private' class methods</li>
@@ -86,19 +84,18 @@
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <p>Lookup the args and when it's called and your good!</p>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <p>Lookup the args and when it's called and your good!</p>
 <p>Use of 'magic' here is a poor choice since the Python community values
 not using magic.  In fact, dunder methods are just plain old methods
 that get called at specific, well-defined times.</p>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: dunder_basics.md -->
         <section class="slide">
@@ -107,7 +104,7 @@ that get called at specific, well-defined times.</p>
                     <header><h1>Why dunders?</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Your already using them</li>
 <li>Pythonic (common/idiomatic)</li>
 <li>Operator overloading</li>
@@ -117,18 +114,17 @@ that get called at specific, well-defined times.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <p>Main goal is to make your object look and act like a standard Python type.</p>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <p>Main goal is to make your object look and act like a standard Python type.</p>
 <p>The person using your object already knows Python and how to use standard
 types so don't make them learn all new semantics.</p>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: dunder_basics.md -->
         <section class="slide has_code">
@@ -137,7 +133,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Common dunders</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="lineno">2</span> <span class="n">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="lineno">3</span> <span class="n">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="lineno">4</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -149,13 +145,10 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>init/creation are separate steps for a good reason.</li>
 <li>Initialize your class, not create</li>
 <li>Takes all arguments from when you create object and passes them</li>
@@ -176,9 +169,11 @@ types so don't make them learn all new semantics.</p>
 <p>Similar in theory to <strong>str</strong>, called by unicode(), etc.</p>
 </li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: features_powered_by_dunders.md -->
         <section class="slide">
@@ -187,7 +182,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Powered by Dunders</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Context Managers</li>
 <li>Collections module</li>
 <li>Properties</li>
@@ -197,14 +192,13 @@ types so don't make them learn all new semantics.</p>
 <li>Operator overloading</li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: context_managers.md -->
         <section class="slide has_code">
@@ -213,7 +207,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Context Managers</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="lineno">2</span> <span class="n">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span>
 </pre></div>
 
@@ -223,14 +217,13 @@ types so don't make them learn all new semantics.</p>
 <li>Built-in for File objects, etc. in 2.7</li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: context_managers.md -->
         <section class="slide has_code">
@@ -239,7 +232,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Context Manager usage</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
 <span class="lineno"> 2</span> <span class="o">...</span>   <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
 <span class="lineno"> 3</span> <span class="o">...</span>     <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
 <span class="lineno"> 4</span> <span class="o">...</span>
@@ -253,14 +246,13 @@ types so don't make them learn all new semantics.</p>
 </pre></div>
 </section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: context_managers.md -->
         <section class="slide has_code">
@@ -269,7 +261,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Context Manager example</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Progress bar that normalizes progress to [0 - 100] scale&quot;&quot;&quot;</span>
 <span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
 <span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_curr_val</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -299,14 +291,13 @@ types so don't make them learn all new semantics.</p>
 </pre></div>
 </section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: ordered_dict.md -->
         <section class="slide has_code">
@@ -315,7 +306,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>OrderedDict</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="lineno">2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 <span class="lineno">3</span> <span class="n">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="lineno">4</span> <span class="n">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
@@ -331,21 +322,20 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>Immutable only needs getitem, len</li>
 <li>Mutable needs setitem</li>
 <li>Implementing <strong>contains</strong> usually not needed, default behavior is to loop
   over your items and return if it was found.</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: ordered_dict.md -->
         <section class="slide has_code">
@@ -354,7 +344,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>OrderedDict usage</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">collections</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">collections</span>
 <span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
 <span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span>
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ordered_dict</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -378,14 +368,13 @@ types so don't make them learn all new semantics.</p>
 </pre></div>
 </section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide">
@@ -394,21 +383,20 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Properties</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Managed attributes</li>
 <li>'Encapsulation'</li>
 <li>Add behavior to attribute actions</li>
 <li>Simplify API</li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -417,7 +405,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Properties</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno"> 2</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
 <span class="lineno"> 3</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
 <span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="bp">None</span>
@@ -439,19 +427,18 @@ types so don't make them learn all new semantics.</p>
 
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>Attribute access looks like variable, can add behavior and method later
   without changing client/API</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -460,7 +447,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Property usage</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s">&#39;luke&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s">&#39;luke&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">)</span>
 <span class="lineno"> 2</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
 <span class="lineno"> 3</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="lineno"> 4</span> <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="n">__init__</span>
@@ -487,14 +474,13 @@ types so don't make them learn all new semantics.</p>
 </pre></div>
 </section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -503,28 +489,27 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Descriptor powered</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">)</span>
 <span class="lineno">2</span> <span class="n">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="lineno">3</span> <span class="n">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
 </pre></div>
 
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>owner is class instance</li>
 <li>Fancy wording for class that overrides attribute look up w/ dunders</li>
 <li><strong>delete</strong> called for descriptor attribute deletion</li>
 <li><strong>del</strong> called in other scenarios right before obj deleted</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -533,7 +518,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Pure Python property</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno"> 2</span>     <span class="s">&quot;Emulate PyProperty_Type() in Objects/descrobject.c&quot;</span>
 <span class="lineno"> 3</span> 
 <span class="lineno"> 4</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fget</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fset</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fdel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -564,14 +549,13 @@ types so don't make them learn all new semantics.</p>
 <li><a href="http://docs.python.org/howto/descriptor.html">reference</a></li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -580,7 +564,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Custom Descriptor</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">texas</span> <span class="o">=</span> <span class="n">Temperature</span><span class="p">()</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">texas</span> <span class="o">=</span> <span class="n">Temperature</span><span class="p">()</span>
 <span class="lineno">2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">texas</span><span class="o">.</span><span class="n">farenheit</span> <span class="o">=</span> <span class="mi">98</span>
 <span class="lineno">3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">texas</span><span class="o">.</span><span class="n">celsius</span>
 <span class="lineno">4</span> <span class="mf">36.666666666666664</span>
@@ -592,14 +576,13 @@ types so don't make them learn all new semantics.</p>
 </pre></div>
 </section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -608,7 +591,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Custom Descriptor</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Celsius</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Celsius</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="lineno"> 2</span>     <span class="sd">&quot;&quot;&quot;Fundamental Temperature Descriptor.&quot;&quot;&quot;</span>
 <span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -636,14 +619,13 @@ types so don't make them learn all new semantics.</p>
 <li><a href="http://www.itmaybeahack.com/book/python-2.6/html/p03/p03c05_properties.html">reference</a></li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: properties.md -->
         <section class="slide has_code">
@@ -652,7 +634,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Properties extended</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="n">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="lineno">2</span> <span class="n">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="lineno">3</span> <span class="n">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="lineno">4</span> <span class="n">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -665,20 +647,19 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>getattr called only for missing attributes</li>
 <li>Useful for throwing a good error message or meta programming</li>
 <li>getattribute is called for all look up, be careful</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: open_source_dunders.md -->
         <section class="slide">
@@ -687,25 +668,24 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Dunders in the wild</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>Parsers: (HTML, markdown, XML)</li>
 <li>Debugging tools: (IPython, PyCharm)</li>
 <li>ORM</li>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li><strong>dir</strong>, <strong>repr</strong> for IPython</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: peewee.md -->
         <section class="slide has_code">
@@ -714,7 +694,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Peewee ORM</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <span class="lineno"> 2</span> <span class="n">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <span class="lineno"> 3</span> <span class="n">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <span class="lineno"> 4</span> <span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
@@ -738,19 +718,18 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>map logical '|', '&amp;', '~' to 'OR', 'AND', 'NOT' SQL</li>
 <li><strong>neg</strong> is unary negation operator</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: pandas.md -->
         <section class="slide has_code">
@@ -759,7 +738,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Pandas</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="lineno"> 2</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Series is 1-d numpy array with labels</span>
 <span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;a&#39;</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s">&#39;b&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;c&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">})</span>
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">s</span>
@@ -790,18 +769,17 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>Show pandas_snippet.py if time</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: pandas.md -->
         <section class="slide has_code">
@@ -810,7 +788,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Panda's secrets</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="n">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <span class="lineno"> 2</span> <span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 <span class="lineno"> 3</span> 
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -841,14 +819,13 @@ types so don't make them learn all new semantics.</p>
 <li>'key' argument is fancy</li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: my_dunder_attempts.md -->
         <section class="slide has_code">
@@ -857,7 +834,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>My Dunder ideas/attempts</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">frappy.services.github</span> <span class="kn">import</span> <span class="n">Github</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">frappy.services.github</span> <span class="kn">import</span> <span class="n">Github</span>
 <span class="lineno">2</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">Github</span><span class="p">()</span>
 <span class="lineno">3</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">users</span><span class="p">(</span><span class="s">&#39;octocat&#39;</span><span class="p">)</span>
 <span class="lineno">4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">result</span><span class="o">.</span><span class="n">response_json</span>
@@ -874,22 +851,21 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>Main idea was to have a python wrapper for any REST API that didn't need it's
   own documentation or constant updates.</li>
 <li>Meta programming</li>
 <li>Create object with base domain name to query</li>
 <li>Add missing attributes onto url, add args at the end as query string</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: my_dunder_attempts.md -->
         <section class="slide has_code">
@@ -898,7 +874,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Hammock</h1></header>
                 
                 
-                    <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">hammock</span> <span class="kn">import</span> <span class="n">Hammock</span> <span class="k">as</span> <span class="n">Github</span>
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno"> 1</span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">hammock</span> <span class="kn">import</span> <span class="n">Hammock</span> <span class="k">as</span> <span class="n">Github</span>
 <span class="lineno"> 2</span> 
 <span class="lineno"> 3</span> <span class="o">&gt;&gt;&gt;</span> <span class="c"># Let&#39;s create the first chain of hammock using base API url</span>
 <span class="lineno"> 4</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">github</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s">&#39;https://api.github.com&#39;</span><span class="p">)</span>
@@ -921,14 +897,13 @@ types so don't make them learn all new semantics.</p>
 <li><a href="https://github.com/kadirpekel/hammock">hammock</a></li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
       <!-- slide source: philosophy.md -->
         <section class="slide">
@@ -937,7 +912,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>Python Philosophy</h1></header>
                 
                 
-                    <section><ul>
+                    <section class="slide-content"><ul>
 <li>When in doubt, rationalize from 'The Zen'</li>
 <li>In the face of ambiguity, refuse the temptation to guess.</li>
 <li>There should be one-- and preferably only one --obvious way to do it.</li>
@@ -947,21 +922,20 @@ types so don't make them learn all new semantics.</p>
 </ul>
 </section>
                 
-            </div>
-        </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-                <ul>
+                <div class="presenter_notes">
+                    <section>
+                    
+                        <ul>
 <li>no ambiguity, getlen(), getLength(), len(), etc.</li>
 <li>Much cleaner IMO than c++/Java syntax of operator overloading</li>
 <li>Docs aren't great, but clearly defined what happens</li>
 <li>Use caution</li>
 </ul>
-            
-            </section>
-        </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
      
       <!-- slide source: references.md -->
         <section class="slide">
@@ -970,7 +944,7 @@ types so don't make them learn all new semantics.</p>
                     <header><h1>References</h1></header>
                 
                 
-                    <section><h2>Code</h2>
+                    <section class="slide-content"><h2>Code</h2>
 <ul>
 <li><a href="http://www.rafekettler.com/magicmethods.html">Magic Methods</a></li>
 <li><a href="http://pinboard.in/u:durden/t:dunder_talk/">Code/Examples/Sources</a></li>
@@ -986,14 +960,13 @@ types so don't make them learn all new semantics.</p>
 <li><a href="http://lukelee.net">http://lukelee.net</a></li>
 </ul></section>
                 
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-        </div>
      
 	<!--
 		To hide progress bar from entire presentation

@@ -428,6 +428,14 @@ body {
       -o-transition: width 0.2s linear;
       transition: width 0.2s linear; }
 
+.presenter_notes {
+  display: none; }
+
+.presenter_view .presenter_notes {
+  display: block; }
+.presenter_view .slide-content {
+  display: none; }
+
 /* Pygments default theme */
 .hll {
   background-color: #ffffcc; }

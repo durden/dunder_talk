@@ -54,18 +54,17 @@
                     <header>{{ slide.header }}</header>
                 {% endif %}
                 {% if slide.content %}
-                    <section>{{ slide.content }}</section>
+                    <section class="slide-content">{{ slide.content }}</section>
                 {% endif %}
+                <div class="presenter_notes">
+                    <section>
+                    {% if slide.presenter_notes %}
+                        {{ slide.presenter_notes }}
+                    {% endif %}
+                    </section>
+                </div>
             </div>
         </section>
-       <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            {% if slide.presenter_notes %}
-                {{ slide.presenter_notes }}
-            {% endif %}
-            </section>
-        </div>
      {% endfor %}
 	<!--
 		To hide progress bar from entire presentation

@@ -408,6 +408,21 @@ body {
 		}
 	}
 
+.presenter_notes {
+    display: none;
+    }
+
+// Presenter View
+// -------------------------------
+.presenter_view {
+    .presenter_notes {
+        display: block;
+        }
+    .slide-content {
+        display: none
+        }
+    }
+
 /* Pygments default theme */
 .hll { background-color: #ffffcc }
 .c { color: #408080; font-style: italic } /* Comment */

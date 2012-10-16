@@ -5,6 +5,7 @@
 		progress = document.querySelector('div.progress div'),
 		slideList = [],
 		timer,
+        spaces = /\s+/, a1 = [''],
 		l = slides.length, i;
 
 	for (i = 0; i < l; i++) {
@@ -20,6 +21,61 @@
 			hasTiming: null != slides[i].dataset.timing
 		});
 	}
+
+    var str2array = function(s) {
+        if (typeof s == 'string' || s instanceof String) {
+            if (s.indexOf(' ') < 0) {
+                a1[0] = s;
+                return a1;
+            } else {
+                return s.split(spaces);
+            }
+        }
+        return s;
+    };
+
+    var trim = function(str) {
+        return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    };
+
+    var addClass = function(node, classStr) {
+        classStr = str2array(classStr);
+        var cls = ' ' + node.className + ' ';
+        for (var i = 0, len = classStr.length, c; i < len; ++i) {
+            c = classStr[i];
+            if (c && cls.indexOf(' ' + c + ' ') < 0) {
+                cls += c + ' ';
+            }
+        }
+        node.className = trim(cls);
+    };
+
+
+    function fullUrl(baseUrl, queryStr, slideId) {
+        var url = '';
+
+        var presenter = getParamByName('presenter');
+        if (presenter != '') {
+            url += baseUrl + "?presenter=" + presenter + "&" + queryStr;
+        } else {
+            url += baseUrl + "?" + queryStr;
+        }
+
+        url += '#' + slideId;
+        return url;
+    }
+
+    function getParamByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.search);
+
+        if(results == null)
+            return "";
+        else
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
 	function getTransform() {
 		var denominator = Math.max(
@@ -74,7 +130,7 @@
 	}
 
 	function isListMode() {
-		return 'full' !== url.search.substr(1);
+		return url.search.indexOf('full') == -1;
 	}
 
 	function normalizeSlideNumber(slideNumber) {
@@ -156,7 +212,8 @@
 
 			// NOTE: we should update hash to get things work properly
 			url.hash = '#' + slideId;
-			history.replaceState(null, null, url.pathname + '?full#' + slideId);
+			history.replaceState(null, null,
+                                 fullUrl(url.pathname, 'full', slideId));
 			enterSlideMode();
 
 			updateProgress(getCurrentSlideNumber());
@@ -204,9 +261,12 @@
 
 	window.addEventListener('DOMContentLoaded', function () {
 		if (!isListMode()) {
-			// "?full" is present without slide hash, so we should display first slide
+            // "?full" is present without slide hash, so we should display
+            // first slide
 			if (-1 === getCurrentSlideNumber()) {
-				history.replaceState(null, null, url.pathname + '?full' + getSlideHash(0));
+				history.replaceState(null, null,
+                                     fullUrl(url.pathname, 'full',
+                                             getSlideHash(0)));
 			}
 
 			enterSlideMode();
@@ -244,7 +304,9 @@
 				if (isListMode() && -1 !== currentSlideNumber) {
 					e.preventDefault();
 
-					history.pushState(null, null, url.pathname + '?full' + getSlideHash(currentSlideNumber));
+					history.pushState(null, null,
+                                      fullUrl(url.pathname, 'full',
+                                            getSlideHash(currentSlideNumber)));
 					enterSlideMode();
 
 					updateProgress(currentSlideNumber);
@@ -257,7 +319,9 @@
 				if (!isListMode()) {
 					e.preventDefault();
 
-					history.pushState(null, null, url.pathname + getSlideHash(currentSlideNumber));
+					history.pushState(null, null,
+                                      url.pathname
+                                      + getSlideHash(currentSlideNumber));
 					enterListMode();
 					scrollToSlide(currentSlideNumber);
 				}
@@ -354,4 +418,8 @@
 		}
 	}, false);
 
+
+    if (getParamByName('presenter') != "") {
+        addClass(document.body, 'presenter_view');
+    }
 }());
