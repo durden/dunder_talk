@@ -3,6 +3,7 @@
 		body = document.body,
 		slides = document.querySelectorAll('.slide'),
 		progress = document.querySelector('div.progress div'),
+        presenterWin = null,
 		slideList = [],
 		timer,
         spaces = /\s+/, a1 = [''],
@@ -178,6 +179,9 @@
 		if (!isListMode()) {
 			updateProgress(slideNumber);
 			updateCurrentAndPassedSlides(slideNumber);
+            if (presenterWin != null) {
+                presenterWin.postMessage('slide#' + slideNumber, '*');
+            }
 		}
 	}
 
@@ -291,6 +295,13 @@
 		}
 	}, false);
 
+    window.addEventListener("message", function(e) {
+        if (e.data.indexOf("slide#") != -1) {
+                currentSlideNo = Number(e.data.replace('slide#', ''));
+                goToSlide(currentSlideNo);
+        }
+    }, false);
+
 	document.addEventListener('keydown', function (e) {
 		// Shortcut for alt, shift and meta keys
 		if (e.altKey || e.ctrlKey || e.metaKey) { return; }
@@ -389,6 +400,11 @@
 				currentSlideNumber += e.shiftKey ? -1 : 1;
 				goToSlide(currentSlideNumber);
 			break;
+            case 80: // p for presenter
+                presenterWin = open(window.location.pathname + '?presenter=1'
+                                    + "&full"
+                                    + getSlideHash(currentSlideNumber));
+            break;
 
 			default:
 				// Behave as usual
